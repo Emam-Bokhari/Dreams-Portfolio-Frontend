@@ -1,5 +1,5 @@
 import SectionTitle from "../shared/SectionTitle";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { skills } from "./SkillData";
 import SkillCard from "./SkillCard";
 
@@ -10,7 +10,7 @@ export default function Skills() {
       <SectionTitle title="My Skills & Tools" />
 
       {/* Tabs Section */}
-      <Tabs defaultValue="frontend" className="w-full mt-4 border-2">
+      <Tabs defaultValue="frontend" className="w-full mt-10 border-2">
         {/* Tabs List */}
         <TabsList className="flex justify-center gap-4 dark:bg-[#110E18]">
           {Object.keys(skills)?.map((category) => (
@@ -24,12 +24,12 @@ export default function Skills() {
           ))}
         </TabsList>
 
-        <div className="relative w-full ">
+        <div className="w-full ">
           {Object.entries(skills).map(([category, skillList]) => (
             <TabsContent
               key={category}
               value={category}
-              className="absolute top-0 left-0 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 transition-opacity duration-300 border-2 border-red-500"
+              className="top-0 left-0 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 transition-opacity duration-300 "
             >
               {skillList.map((skill) => (
                 <SkillCard key={skill?.id} skill={skill} />

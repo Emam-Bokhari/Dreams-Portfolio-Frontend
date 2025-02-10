@@ -7,23 +7,43 @@ body {
 }
 
 /* Custom Scrollbar Styling */
-/* ::-webkit-scrollbar { */
-/* width: 8px; Adjust width as needed */
-/* } */
+::-webkit-scrollbar {
+  width: 8px;
+}
 
-/* ::-webkit-scrollbar-track { */
-/* background: #f1f1f1; Light gray track */
-/* } */
+/* Scrollbar Track with lighting effect on the left side */
+::-webkit-scrollbar-track {
+  background: #a58df7;
+  border-radius: 4px;
+  position: relative;
+}
 
-/* ::-webkit-scrollbar-thumb { */
-/* background: #8750f7; Custom color */
-/* border-radius: 4px; */
-/* } */
+/* Add a glowing effect on the left side */
+::-webkit-scrollbar-track::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 100%;
+  background: rgba(135, 80, 247, 0.6);
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(135, 80, 247, 0.8);
+  /* Glow effect on the left side */
+}
 
-/* ::-webkit-scrollbar-thumb:hover { */
-/* background: #6b3ecb; Slightly darker shade on hover */
-/* } */
+/* Scrollbar Thumb */
+::-webkit-scrollbar-thumb {
+  background: #8750f7;
+  border-radius: 4px;
+}
 
+/* Hover effect for the thumb */
+::-webkit-scrollbar-thumb:hover {
+  background: #6b3ecb;
+}
+
+/* Slightly darker shade on hover */
 @layer base {
   :root {
     --background: 0 0% 100%;

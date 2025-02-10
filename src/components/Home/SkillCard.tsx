@@ -18,7 +18,7 @@ export default function SkillCard({ skill }: SkillProps) {
     <Fragment>
       <Card
         key={skill?.id}
-        className="dark:bg-[#140C1C] transition-all duration-300 dark:hover:bg-[#1d0f28] hover:scale-[1.03]"
+        className="dark:bg-[#140C1C] transition-all duration-300 dark:hover:bg-[#1d0f28] hover:scale-[1.03] overflow-hidden"
       >
         <CardHeader>
           <div className="flex items-center gap-3">
