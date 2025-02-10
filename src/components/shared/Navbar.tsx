@@ -25,7 +25,7 @@ import { ModeToggle } from "./ModeToggle";
 
 export default function Navbar() {
   return (
-    <nav className="flex items-center justify-between p-8 border-2 border-red-500 text-[#110E18] dark:text-white  lg:w-[80%] mx-auto">
+    <nav className="flex items-center justify-between p-4 border-2 border-red-500 text-[#110E18] dark:text-white  lg:max-w-screen-2xl mx-auto">
       {/* Left side - Logo */}
       <div className="text-xl font-bold">
         <Link href="/">
