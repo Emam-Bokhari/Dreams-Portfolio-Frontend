@@ -6,7 +6,7 @@ import BestSkillsOn from "./BestSkillsOn";
 export default function Banner() {
   return (
     <Fragment>
-      <div className="flex justify-between items-center  xl:h-[calc(100vh-7rem)] gap-10">
+      <div className="flex justify-between items-center  xl:h-[calc(100vh-7rem)] gap-10 border-2 border-red-500">
         {/* text */}
         <div className=" space-y-4">
           <h2 className="text-sm font-medium text-[#110E18] dark:text-white">

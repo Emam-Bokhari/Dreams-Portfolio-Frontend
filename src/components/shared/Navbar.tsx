@@ -41,7 +41,7 @@ export default function Navbar() {
         <NavigationLink path="/blogs" route="Blogs" />
         <NavigationLink path="/contact" route="Contact" />
         <ModeToggle />
-        <Button className="bg-[#8750F7] hover:bg-[#733DD6]">
+        <Button className="bg-[#8750F7] hover:bg-[#733DD6] text-white dark:text-white">
           <LogInIcon className="w-4 h-4" />
           Login
         </Button>
