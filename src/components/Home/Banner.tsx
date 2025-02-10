@@ -1,13 +1,7 @@
-import Image from "next/image";
 import { Fragment } from "react";
-import facebook from "@/assets/facebook.png";
-import linkedin from "@/assets/linkedin.png";
-import react from "@/assets/React.svg";
-import redux from "@/assets/Redux.svg";
-import mongodb from "@/assets/MongoDB.svg";
-import javascript from "@/assets/JavaScript.svg";
 import TechAnimation from "./TechAnimation";
-import Link from "next/link";
+import FindWithMe from "./FindWithMe";
+import BestSkillsOn from "./BestSkillsOn";
 
 export default function Banner() {
   return (
@@ -36,53 +30,9 @@ export default function Banner() {
           {/* icons */}
           <div className="flex flex-col xl:flex-row  gap-4 xl:gap-20">
             {/* find with me  */}
-            <div className="space-y-4">
-              <p className="text-sm text-[#110E18] dark:text-white">
-                Find With Me
-              </p>
-
-              <div className="flex items-center gap-5">
-                <Link href="https://www.facebook.com/emambokhari99">
-                  <Image
-                    src={facebook}
-                    width={50}
-                    height={50}
-                    alt="Facebook Icon"
-                  />
-                </Link>
-                <Link href="#">
-                  <Image
-                    src={linkedin}
-                    width={50}
-                    height={50}
-                    alt="Linkedin Icon"
-                  />
-                </Link>
-              </div>
-            </div>
+            <FindWithMe />
             {/* best skills on */}
-            <div className="space-y-4">
-              <p className="text-sm text-[#110E18] dark:text-white">
-                Best Skills On
-              </p>
-
-              <div className="flex items-center gap-5">
-                <Image
-                  src={javascript}
-                  width={50}
-                  height={50}
-                  alt="Javascript Icon"
-                />
-                <Image src={react} width={50} height={50} alt="React Icon" />
-                <Image src={redux} width={50} height={50} alt="Redux Icon" />
-                <Image
-                  src={mongodb}
-                  width={50}
-                  height={50}
-                  alt="MongodDB Icon"
-                />
-              </div>
-            </div>
+            <BestSkillsOn />
           </div>
         </div>
         {/* animation */}
