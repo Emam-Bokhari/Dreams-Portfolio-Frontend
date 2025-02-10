@@ -21,10 +21,11 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import NavigationLink from "./NavigationLink";
+import { ModeToggle } from "./ModeToggle";
 
 export default function Navbar() {
   return (
-    <nav className="flex items-center justify-between p-8 border-2 border-red-500 text-white lg:w-[80%] mx-auto">
+    <nav className="flex items-center justify-between p-8 border-2 border-red-500 text-[#110E18] dark:text-white  lg:w-[80%] mx-auto">
       {/* Left side - Logo */}
       <div className="text-xl font-bold">
         <Link href="/">
@@ -39,6 +40,7 @@ export default function Navbar() {
         <NavigationLink path="/projects" route="Projects" />
         <NavigationLink path="/blogs" route="Blogs" />
         <NavigationLink path="/contact" route="Contact" />
+        <ModeToggle />
         <Button className="bg-[#8750F7] hover:bg-[#733DD6]">
           <LogInIcon className="w-4 h-4" />
           Login
