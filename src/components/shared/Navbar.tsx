@@ -2,7 +2,15 @@ import Image from "next/image";
 import logo from "@/assets/Logo.png";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Menu } from "lucide-react";
+import {
+  Home,
+  Info,
+  Briefcase,
+  PenTool,
+  Menu,
+  Contact,
+  LogInIcon,
+} from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,6 +20,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import NavigationLink from "./NavigationLink";
 
 export default function Navbar() {
   return (
@@ -25,42 +34,15 @@ export default function Navbar() {
 
       {/* Right side - Navigation links and Login button */}
       <div className="hidden lg:flex items-center space-x-6">
-        <Link
-          href="#home"
-          className="transition-all duration-300 relative group"
-        >
-          Home
-          <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#733DD6] transition-all duration-300 group-hover:w-full"></span>
-        </Link>
-        <Link
-          href="#about"
-          className="transition-all duration-300 relative group"
-        >
-          About
-          <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#733DD6] transition-all duration-300 group-hover:w-full"></span>
-        </Link>
-        <Link
-          href="#projects"
-          className="transition-all duration-300 relative group"
-        >
-          Projects
-          <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#733DD6] transition-all duration-300 group-hover:w-full"></span>
-        </Link>
-        <Link
-          href="#blogs"
-          className="transition-all duration-300 relative group"
-        >
-          Blogs
-          <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#733DD6] transition-all duration-300 group-hover:w-full"></span>
-        </Link>
-        <Link
-          href="#contact"
-          className="transition-all duration-300 relative group"
-        >
-          Contact
-          <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-[#733DD6] transition-all duration-300 group-hover:w-full"></span>
-        </Link>
-        <Button className="bg-[#8750F7] hover:bg-[#733DD6]">Login</Button>
+        <NavigationLink path="/" route="Home" />
+        <NavigationLink path="/about" route="About" />
+        <NavigationLink path="/projects" route="Projects" />
+        <NavigationLink path="/blogs" route="Blogs" />
+        <NavigationLink path="/contact" route="Contact" />
+        <Button className="bg-[#8750F7] hover:bg-[#733DD6]">
+          <LogInIcon className="w-4 h-4" />
+          Login
+        </Button>
       </div>
 
       {/* Hamburger Menu for mobile */}
@@ -74,14 +56,32 @@ export default function Navbar() {
             <DropdownMenuLabel>Explore</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem>Home</DropdownMenuItem>
-              <DropdownMenuItem>About</DropdownMenuItem>
-              <DropdownMenuItem>Projects</DropdownMenuItem>
-              <DropdownMenuItem>Blogs</DropdownMenuItem>
-              <DropdownMenuItem>Contact</DropdownMenuItem>
+              <DropdownMenuItem>
+                <Home className="w-4 h-4  " />
+                Home
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Info className="w-4 h-4" />
+                About
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Briefcase className="w-4 h-4" />
+                Projects
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <PenTool className="w-4 h-4" />
+                Blogs
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Contact className="w-4 h-4" />
+                Contact
+              </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Login</DropdownMenuItem>
+            <DropdownMenuItem>
+              <LogInIcon className="w-4 h-4" />
+              Login
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
