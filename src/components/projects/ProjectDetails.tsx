@@ -82,14 +82,16 @@ export default function ProjectDetails({ project }: ProjectProps) {
           </p>
         </div>
         {/*  Project goals & objectives */}
-        <div>
-          <h3 className="text-[#8750F7] text-xl font-medium">
-            Project goals & objectives:
-          </h3>
-          <p className=" text-base text-[#989BA4] leading-relaxed">
-            {project?.projectGoals}
-          </p>
-        </div>
+        {project?.projectGoals && (
+          <div>
+            <h3 className="text-[#8750F7] text-xl font-medium">
+              Project goals & objectives:
+            </h3>
+            <p className=" text-base text-[#989BA4] leading-relaxed">
+              {project?.projectGoals}
+            </p>
+          </div>
+        )}
         {/*  Challenges Faced:*/}
         {project?.challengesFaced && (
           <div>

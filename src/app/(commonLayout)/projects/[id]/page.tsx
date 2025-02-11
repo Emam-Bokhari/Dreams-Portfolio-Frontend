@@ -7,7 +7,9 @@ type ParamsProps = {
 export default async function ProjectDetailsPage({ params }: ParamsProps) {
   const { id } = params;
   //   console.log(id);
-  const response = await fetch(`http://localhost:5000/api/v1/projects/${id}`);
+  const response = await fetch(`${process.env.BASE_URL}/projects/${id}`, {
+    next: { revalidate: 30 },
+  });
   if (!response.ok) {
     throw new Error("Failed to fetch project details data!");
   }
