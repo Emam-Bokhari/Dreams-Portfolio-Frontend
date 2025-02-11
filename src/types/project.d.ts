@@ -1,0 +1,20 @@
+export type TProject = {
+    _id: string;
+    title: string;
+    thumbnail: string;
+    description: string;
+    technologiesUsed: string[];
+    challengesFaced?: string;
+    solution?: string;
+    keyFeatures: string[];
+    liveLink: string;
+    frontendSourceCode?: string;
+    backendSourceCode?: string;
+    apiDocumentation?: string;
+    projectGoals?: string;
+    futureImprovements?: string;
+    securityConsiderations?: string;
+    projectTimeline?: string;
+    caseStudy?: string;
+    isDeleted?: boolean;
+};
