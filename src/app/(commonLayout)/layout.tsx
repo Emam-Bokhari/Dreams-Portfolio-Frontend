@@ -1,3 +1,4 @@
+import Footer from "@/components/shared/Footer";
 import Navbar from "@/components/shared/Navbar";
 import { Fragment, ReactNode } from "react";
 
@@ -9,7 +10,8 @@ export default function CommonLayout({ children }: CommonLayoutProps) {
   return (
     <Fragment>
       <Navbar />
-      <div>{children}</div>
+      <div className="min-h-screen">{children}</div>
+      <Footer />
     </Fragment>
   );
 }
