@@ -1,11 +1,15 @@
 import BlogDetails from "@/components/blogs/BlogDetails";
 
-type ParamsProps = {
-  params: { id: string };
-};
+// type ParamsProps = {
+//   params: { id: string };
+// };
 
-export default async function BlogDetailsPage({ params }: ParamsProps) {
-  const { id } = params;
+export default async function BlogDetailsPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
   // console.log(id);
   const response = await fetch(`${process.env.BASE_URL}/blogs/${id}`, {
     cache: "no-store",
