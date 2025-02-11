@@ -3,7 +3,7 @@ import CssIcon from "@/assets/css-3.svg";
 import JavascriptIcon from "@/assets/javascript-1.svg";
 import TypescriptIcon from "@/assets/typescript.svg";
 import ReactIcon from "@/assets/react-2.svg";
-import ReduxIcon from "@/assets/redux.svg";
+import ReduxIcon from "@/assets/Redux.svg";
 import NextJsIcon from "@/assets/Next.js.svg";
 import FirebaseIcon from "@/assets/firebase-2.svg";
 import NodeJsIcon from "@/assets/nodejs-icon.svg";

@@ -3,11 +3,13 @@ import "./globals.css";
 import Providers from "@/providers";
 import { Poppins } from "next/font/google";
 
-export const poppins = Poppins({
+const poppins = Poppins({
   weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
   display: "swap",
 });
+
+const poppinsClassName: string = poppins.className;
 
 export const metadata: Metadata = {
   title: "Portfolio",
@@ -43,7 +45,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${poppins.className} antialiased  bg-white dark:bg-[#050709]`}
+        className={`${poppinsClassName} antialiased  bg-white dark:bg-[#050709]`}
       >
         <Providers>{children}</Providers>
       </body>
