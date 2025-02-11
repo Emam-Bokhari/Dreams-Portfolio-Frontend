@@ -1,7 +1,7 @@
-import Banner from "@/components/Home/Banner";
-import FeaturedProject from "@/components/Home/FeaturedProject";
-import { Pattern } from "@/components/Home/Pattern";
-import Skills from "@/components/Home/Skills";
+import Banner from "@/components/home/Banner";
+import FeaturedProject from "@/components/home/FeaturedProject";
+import { Pattern } from "@/components/home/Pattern";
+import Skills from "@/components/home/Skills";
 
 export default function HomePage() {
   return (

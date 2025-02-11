@@ -11,7 +11,7 @@ export default function About() {
     <Fragment>
       {/* section title */}
       <SectionTitle title="About Me" />
-      <div className="mt-10  bg-[#140C1C] p-4 rounded-md ">
+      <div className="mt-10  dark:bg-[#140C1C] p-4 rounded-md ">
         <div className="space-y-4">
           <div>
             {/* name  */}

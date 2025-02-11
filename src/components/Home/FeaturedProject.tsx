@@ -8,22 +8,11 @@ import Image from "next/image";
 import { Badge } from "../ui/badge";
 import Link from "next/link";
 import calendar from "@/assets/schedule.png";
+import { getRandomColor } from "@/lib/generateRandomColors";
 
 export default function FeaturedProject() {
-  const badgeColors = [
-    { base: "bg-blue-100 text-blue-800", hover: "hover:bg-blue-200" },
-    { base: "bg-green-100 text-green-800", hover: "hover:bg-green-200" },
-    { base: "bg-yellow-100 text-yellow-800", hover: "hover:bg-yellow-200" },
-    { base: "bg-purple-100 text-purple-800", hover: "hover:bg-purple-200" },
-    { base: "bg-pink-100 text-pink-800", hover: "hover:bg-pink-200" },
-    { base: "bg-indigo-100 text-indigo-800", hover: "hover:bg-indigo-200" },
-    { base: "bg-teal-100 text-teal-800", hover: "hover:bg-teal-200" },
-  ];
-
-  const getRandomColor = () =>
-    badgeColors[Math.floor(Math.random() * badgeColors.length)];
-
   const technologies = ["Next.Js", "ShadcnUI", "Redux", "Express", "Mongoose"];
+
   return (
     <Fragment>
       <div className="border-2 border-orange-500 mt-10">
@@ -31,7 +20,7 @@ export default function FeaturedProject() {
         {/* card */}
         <section className="mt-10">
           <Card
-            className="w-full bg-[#140C1C] dark:hover:bg-[#1d0f28] overflow-hidden flex flex-col xl:flex-row xl:items-stretch gap-5 p-4 
+            className="w-full dark:bg-[#140C1C] dark:hover:bg-[#1d0f28] overflow-hidden flex flex-col xl:flex-row xl:items-stretch gap-5 p-4 
   transition-all duration-500 ease-in-out transform group 
   hover:-translate-y-2 hover:shadow-[0px_0px_20px_rgba(135,80,247,0.6)] hover:border-[#8750F7] border-2 border-transparent"
           >
