@@ -56,17 +56,19 @@ export default function Projects({ projects }: ProjectProps) {
                   <h2 className="text-2xl text-[#8750F7] font-bold">
                     {project?.title}
                   </h2>
-                  <div className="flex items-center space-x-3 ">
-                    <p className="text-base text-[#989BA4]">
-                      {project?.projectTimeline}
-                    </p>
-                    <Image
-                      width={25}
-                      height={25}
-                      alt="Calendar Icon"
-                      src={calendar}
-                    />
-                  </div>
+                  {project?.projectTimeline && (
+                    <div className="flex items-center space-x-3 ">
+                      <p className="text-base text-[#989BA4]">
+                        {project?.projectTimeline}
+                      </p>
+                      <Image
+                        width={25}
+                        height={25}
+                        alt="Calendar Icon"
+                        src={calendar}
+                      />
+                    </div>
+                  )}
                 </div>
                 {/* description */}
                 <p className=" text-base text-[#989BA4] leading-relaxed">
@@ -115,18 +117,21 @@ export default function Projects({ projects }: ProjectProps) {
                         Frontend GitHub <FaGithub size={18} />
                       </Link>
                     </Button>
-                    <Button
-                      asChild
-                      className="bg-[#8750F7] hover:bg-[#733DD6] text-white"
-                    >
-                      <Link
-                        href={project?.backendSourceCode as string}
-                        target="_blank"
-                        rel="noopener noreferrer"
+
+                    {project?.backendSourceCode && (
+                      <Button
+                        asChild
+                        className="bg-[#8750F7] hover:bg-[#733DD6] text-white"
                       >
-                        Backend GitHub <FaGithub size={18} />
-                      </Link>
-                    </Button>
+                        <Link
+                          href={project?.backendSourceCode as string}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Backend GitHub <FaGithub size={18} />
+                        </Link>
+                      </Button>
+                    )}
                   </div>
                 </div>
                 {/* details button */}
