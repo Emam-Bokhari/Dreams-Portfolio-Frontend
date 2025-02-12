@@ -1,8 +1,4 @@
-import ProjectDetails from "@/components/projects/ProjectDetails";
-
-// type ParamsProps = {
-//   params: { id: string };
-// };
+import ProjectDetails from "@/components/shared/ProjectDetails";
 
 export default async function ProjectDetailsPage({
   params,

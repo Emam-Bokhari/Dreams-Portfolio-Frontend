@@ -8,10 +8,15 @@ import Image from "next/image";
 import { Badge } from "../ui/badge";
 import Link from "next/link";
 import calendar from "@/assets/schedule.png";
+import { TProject } from "@/types/project";
 
-export default function FeaturedProject() {
-  const technologies = ["Next.Js", "ShadcnUI", "Redux", "Express", "Mongoose"];
+type FeaturedProjectProps = {
+  featuredProject: TProject;
+};
 
+export default function FeaturedProject({
+  featuredProject,
+}: FeaturedProjectProps) {
   const badgeColors = [
     { base: "bg-blue-100 text-blue-800", hover: "hover:bg-blue-200" },
     { base: "bg-green-100 text-green-800", hover: "hover:bg-green-200" },
@@ -40,7 +45,7 @@ export default function FeaturedProject() {
 
             <div className="flex-1">
               <Image
-                src="https://themewagon.com/wp-content/uploads/2020/12/eflyer.jpg"
+                src={featuredProject?.thumbnail}
                 alt="Featured Project"
                 sizes="100vw"
                 width={1200}
@@ -54,11 +59,11 @@ export default function FeaturedProject() {
               {/* title and timeline*/}
               <div className="flex flex-col xl:flex-row gap-4 xl:gap-0 xl:justify-between">
                 <h2 className="text-2xl text-[#8750F7] font-bold">
-                  Green Leaf Book Store
+                  {featuredProject?.title}
                 </h2>
                 <div className="flex items-center space-x-3 ">
                   <p className="text-base text-[#989BA4]">
-                    Completed in 25 days
+                    {featuredProject?.projectTimeline}
                   </p>
                   <Image
                     width={25}
@@ -70,24 +75,12 @@ export default function FeaturedProject() {
               </div>
               {/* description */}
               <p className=" text-base text-[#989BA4] leading-relaxed">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora
-                fuga ullam impedit libero sed et eaque repellendus laborum
-                tempore exercitationem debitis fugiat totam ad atque odio itaque
-                labore, quam ab commodi excepturi necessitatibus voluptates
-                error velit? Non voluptatum ea odio quis sint et quos similique
-                placeat possimus iste fugiat dignissimos cum minus debitis
-                tempore, maxime, nihil ex, labore fugit dolorem. Vel dolorum
-                voluptates dolores ipsam pariatur repellendus nemo rem fugiat
-                optio ratione accusamus aspernatur molestiae rerum doloremque
-                accusantium, unde, sit laboriosam! Laudantium inventore
-                accusamus delectus repudiandae dignissimos voluptates quasi
-                obcaecati ad, iusto cum id error, cumque ea expedita illo
-                repellat.
+                {featuredProject?.description}
               </p>
               <div>
                 {/* technologies used */}
                 <div className="flex gap-4 flex-wrap">
-                  {technologies.map((tech, index) => {
+                  {featuredProject?.technologiesUsed.map((tech, index) => {
                     const color = getRandomColor();
                     return (
                       <Badge
@@ -107,7 +100,11 @@ export default function FeaturedProject() {
                     asChild
                     className="bg-[#8750F7] hover:bg-[#733DD6] text-white"
                   >
-                    <Link href="#" target="_blank" rel="noopener noreferrer">
+                    <Link
+                      href={featuredProject?.liveLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       Live Demo <PlayCircle size={18} />
                     </Link>
                   </Button>
@@ -115,25 +112,37 @@ export default function FeaturedProject() {
                     asChild
                     className="bg-[#8750F7] hover:bg-[#733DD6] text-white"
                   >
-                    <Link href="#" target="_blank" rel="noopener noreferrer">
+                    <Link
+                      href={featuredProject?.frontendSourceCode}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       Frontend GitHub <FaGithub size={18} />
                     </Link>
                   </Button>
-                  <Button
-                    asChild
-                    className="bg-[#8750F7] hover:bg-[#733DD6] text-white"
-                  >
-                    <Link href="#" target="_blank" rel="noopener noreferrer">
-                      Backend GitHub <FaGithub size={18} />
-                    </Link>
-                  </Button>
+                  {featuredProject?.backendSourceCode && (
+                    <Button
+                      asChild
+                      className="bg-[#8750F7] hover:bg-[#733DD6] text-white"
+                    >
+                      <Link
+                        href={featuredProject?.backendSourceCode as string}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Backend GitHub <FaGithub size={18} />
+                      </Link>
+                    </Button>
+                  )}
                 </div>
               </div>
               {/* details button */}
-              <Button className="bg-[#8750F7] hover:bg-[#733DD6] text-white flex items-center gap-2">
-                <Info size={18} />
-                View Project Details
-              </Button>
+              <Link href="/projects/featured" className="block">
+                <Button className="bg-[#8750F7] hover:bg-[#733DD6] text-white flex items-center gap-2">
+                  <Info size={18} />
+                  View Project Details
+                </Button>
+              </Link>
             </CardContent>
           </Card>
         </section>

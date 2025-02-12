@@ -1,6 +1,5 @@
-import { Fragment } from "react";
-import SectionTitle from "../shared/SectionTitle";
 import Image from "next/image";
+import { Fragment } from "react";
 import calendar from "@/assets/schedule.png";
 import { Button } from "../ui/button";
 import Link from "next/link";
@@ -8,14 +7,13 @@ import { PlayCircle } from "lucide-react";
 import { FaBook, FaGithub } from "react-icons/fa";
 import { TProject } from "@/types/project";
 
-type ProjectProps = {
+type ProjectDetailsProps = {
   project: TProject;
 };
 
-export default function ProjectDetails({ project }: ProjectProps) {
+export default function ProjectDetails({ project }: ProjectDetailsProps) {
   return (
     <Fragment>
-      <SectionTitle title="Project Details" />
       <div className="mt-10  space-y-4 dark:bg-[#140C1C] rounded-md p-4">
         {/* image */}
         <div className="h-[600px]">

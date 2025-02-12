@@ -16,5 +16,6 @@ export type TProject = {
     futureImprovements?: string;
     securityConsiderations?: string;
     projectTimeline?: string;
+    isFeatured?: boolean;
     isDeleted?: boolean;
 };
