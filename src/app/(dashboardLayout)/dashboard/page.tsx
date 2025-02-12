@@ -4,7 +4,7 @@ export default function DashboardHomePage() {
   return (
     <Fragment>
       <div>
-        <p>Dashboard Home Page lorem300 </p>
+        <p className="text-white">Dashboard Home Page lorem300 </p>
       </div>
     </Fragment>
   );

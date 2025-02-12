@@ -144,7 +144,10 @@ export default function AllProjectsPage() {
         return (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="h-8 w-8 p-0">
+              <Button
+                variant="ghost"
+                className="h-8 w-8 p-0 hover:bg-transparent"
+              >
                 <span className="sr-only">Open menu</span>
                 <MoreHorizontal />
               </Button>
@@ -199,7 +202,7 @@ export default function AllProjectsPage() {
     },
     initialState: {
       pagination: {
-        pageSize: 10,
+        pageSize: 1,
         pageIndex: 0,
       },
     },
@@ -222,11 +225,14 @@ export default function AllProjectsPage() {
           onChange={(event) =>
             table.getColumn("title")?.setFilterValue(event.target.value)
           }
-          className="max-w-sm"
+          className="max-w-sm text-white border-[#27272A]"
         />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="ml-auto">
+            <Button
+              variant="outline"
+              className="ml-auto text-white hover:text-white border-[#27272A] bg-[#0A0A0A] hover:bg-[#27272A]"
+            >
               Columns <ChevronDown />
             </Button>
           </DropdownMenuTrigger>
@@ -247,13 +253,16 @@ export default function AllProjectsPage() {
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
-      <div className="rounded-md border">
+      <div className="rounded-md border border-[#27272A]">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id}>
+              <TableRow
+                key={headerGroup.id}
+                className="hover:bg-[#27272A] border-[#27272A]"
+              >
                 {headerGroup.headers.map((header) => (
-                  <TableHead key={header.id}>
+                  <TableHead key={header.id} className="text-[#989BA4]">
                     {header.isPlaceholder
                       ? null
                       : flexRender(
@@ -269,11 +278,12 @@ export default function AllProjectsPage() {
             {table.getRowModel().rows.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow
+                  className="hover:bg-[#27272A]"
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
                 >
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
+                    <TableCell key={cell.id} className="text-white">
                       {flexRender(
                         cell.column.columnDef.cell,
                         cell.getContext()
@@ -286,7 +296,7 @@ export default function AllProjectsPage() {
               <TableRow>
                 <TableCell
                   colSpan={columns.length}
-                  className="h-24 text-center"
+                  className="h-24 text-center text-[#989BA4]"
                 >
                   No projects data found.
                 </TableCell>
@@ -309,6 +319,7 @@ export default function AllProjectsPage() {
             size="sm"
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
+            className="text-white hover:text-white bg-[#140C1C] hover:bg-[#27272A] border-[#27272A]"
           >
             Previous
           </Button>
@@ -317,6 +328,7 @@ export default function AllProjectsPage() {
             size="sm"
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
+            className="text-white bg-[#140C1C] hover:bg-[#27272A] hover:text-white border-[#27272A]"
           >
             Next
           </Button>

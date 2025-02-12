@@ -4,7 +4,7 @@ export default function CreateProjectPage() {
   return (
     <Fragment>
       <div>
-        <p>Create Project page</p>
+        <p className="text-white">Create Project page</p>
       </div>
     </Fragment>
   );

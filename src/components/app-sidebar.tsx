@@ -57,14 +57,14 @@ const contact = [
 
 export function AppSidebar() {
   return (
-    <Sidebar className="bg-[#140C1C]">
+    <Sidebar className="bg-[#140C1C] border-[#27272A]">
       <SidebarHeader className="bg-[#140C1C]">
         <Link href="/">
           <div className="flex gap-2">
             <Image src={logo} width={40} height={40} alt="Logo" />
             <div className="leading-[0.8] text-sm">
-              <h2 className="text-base">Portfolio</h2>
-              <small className="text-xs">Moshfiqur Rahman</small>
+              <h2 className="text-base text-white">Portfolio</h2>
+              <small className="text-xs text-white">Moshfiqur Rahman</small>
             </div>
           </div>
         </Link>
@@ -74,7 +74,7 @@ export function AppSidebar() {
         <SidebarGroupComponent label="Blog" items={blog} />
         <SidebarGroupComponent label="Contact" items={contact} />
       </SidebarContent>
-      <SidebarFooter className="border-t border-gray-700 p-3">
+      <SidebarFooter className="border-t border-gray-700 p-3 bg-[#140C1C]">
         {/* user info */}
         <div className="flex items-center gap-3">
           <Avatar>
@@ -85,7 +85,7 @@ export function AppSidebar() {
             <AvatarFallback>MR</AvatarFallback>
           </Avatar>
           <div className="text-white text-sm">
-            <p className="font-medium">Moshfiqur Rahman</p>
+            <p className="font-medium text-white">Moshfiqur Rahman</p>
             <p className="text-[11px] text-gray-400">
               moshfiqurrahman37@email.com
             </p>

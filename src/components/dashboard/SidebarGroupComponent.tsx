@@ -6,6 +6,7 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
 } from "@/components/ui/sidebar";
+import Link from "next/link";
 
 export default function SidebarGroupComponent({
   label,
@@ -16,16 +17,17 @@ export default function SidebarGroupComponent({
 }) {
   return (
     <SidebarGroup>
-      <SidebarGroupLabel>{label}</SidebarGroupLabel>
+      <SidebarGroupLabel className="text-[#989BA4]">{label}</SidebarGroupLabel>
       <SidebarGroupContent>
         <SidebarMenu>
           {items.map((item) => (
             <SidebarMenuItem key={item.title}>
               <SidebarMenuButton asChild>
-                <a href={item.url}>
-                  <item.icon />
-                  <span>{item.title}</span>
-                </a>
+                <Link href={item.url} className="hover:bg-[#27272A]">
+                  <item.icon className="text-[#989BA4]" />
+
+                  <span className="text-white">{item.title}</span>
+                </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
           ))}
