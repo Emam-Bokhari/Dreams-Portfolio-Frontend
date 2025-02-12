@@ -37,12 +37,12 @@ const project = [
 const blog = [
   {
     title: "Create Blog",
-    url: "#",
+    url: "/dashboard/blogs/create-blog",
     icon: Edit,
   },
   {
     title: "Blogs",
-    url: "#",
+    url: "/dashboard/blogs",
     icon: BookOpenText,
   },
 ];
