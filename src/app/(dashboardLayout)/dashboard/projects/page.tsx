@@ -202,7 +202,7 @@ export default function AllProjectsPage() {
     },
     initialState: {
       pagination: {
-        pageSize: 1,
+        pageSize: 10,
         pageIndex: 0,
       },
     },
@@ -278,7 +278,7 @@ export default function AllProjectsPage() {
             {table.getRowModel().rows.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow
-                  className="hover:bg-[#27272A]"
+                  className="hover:bg-[#27272A] border-[#27272A]"
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
                 >

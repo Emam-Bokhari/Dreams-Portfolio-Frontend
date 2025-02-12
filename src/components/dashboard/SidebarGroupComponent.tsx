@@ -23,7 +23,7 @@ export default function SidebarGroupComponent({
           {items.map((item) => (
             <SidebarMenuItem key={item.title}>
               <SidebarMenuButton asChild>
-                <Link href={item.url} className="hover:bg-[#27272A]">
+                <Link href={item.url} className="hover:bg-[#2A1B30]">
                   <item.icon className="text-[#989BA4]" />
 
                   <span className="text-white">{item.title}</span>

@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import { Button } from "./ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { ModeToggle } from "./shared/ModeToggle";
 
 // menu items
 const project = [
@@ -95,13 +96,8 @@ export function AppSidebar() {
         {/* actions */}
         <div className="mt-3 flex justify-between">
           {/* theme toggle */}
-          <Button
-            variant="ghost"
-            size="icon"
-            className="text-white hover:bg-gray-800"
-          >
-            <Moon className="w-5 h-5" />
-          </Button>
+
+          <ModeToggle />
 
           {/* settings */}
           <Button
