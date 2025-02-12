@@ -26,14 +26,14 @@ import { ModeToggle } from "./ModeToggle";
 export default function Navbar() {
   return (
     <nav className="flex items-center justify-between p-4 border-2 border-red-500 text-[#110E18] dark:text-white  lg:max-w-screen-2xl mx-auto">
-      {/* Left side - Logo */}
+      {/*  Logo */}
       <div className="text-xl font-bold">
         <Link href="/">
           <Image src={logo} alt="Logo" width={50} height={50} />
         </Link>
       </div>
 
-      {/* Right side - Navigation links and Login button */}
+      {/* Navigation links and Login button */}
       <div className="hidden lg:flex items-center space-x-6">
         <NavigationLink path="/" route="Home" />
         <NavigationLink path="/about" route="About" />

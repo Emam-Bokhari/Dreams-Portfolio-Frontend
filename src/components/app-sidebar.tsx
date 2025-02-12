@@ -1,4 +1,4 @@
-import { Home, Inbox, LogOut, LogOutIcon, Moon, Settings } from "lucide-react";
+import { LogOut, Moon, Settings } from "lucide-react";
 import logo from "@/assets/Logo.png";
 
 import {
@@ -10,7 +10,6 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import SidebarGroupComponent from "./dashboard/SidebarGroupComponent";
-import profileImage from "@/assets/image.jpg";
 import {
   FilePlus,
   FolderKanban,
@@ -21,16 +20,16 @@ import {
 import { Button } from "./ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
-// Menu items.
+// menu items
 const project = [
   {
     title: "Create Project",
-    url: "#",
+    url: "/dashboard/projects/create-project",
     icon: FilePlus,
   },
   {
     title: "Projects",
-    url: "#",
+    url: "/dashboard/projects",
     icon: FolderKanban,
   },
 ];
@@ -76,7 +75,7 @@ export function AppSidebar() {
         <SidebarGroupComponent label="Contact" items={contact} />
       </SidebarContent>
       <SidebarFooter className="border-t border-gray-700 p-3">
-        {/* User Info */}
+        {/* user info */}
         <div className="flex items-center gap-3">
           <Avatar>
             <AvatarImage
@@ -93,9 +92,9 @@ export function AppSidebar() {
           </div>
         </div>
 
-        {/* Actions */}
+        {/* actions */}
         <div className="mt-3 flex justify-between">
-          {/* Theme Toggle */}
+          {/* theme toggle */}
           <Button
             variant="ghost"
             size="icon"
@@ -104,7 +103,7 @@ export function AppSidebar() {
             <Moon className="w-5 h-5" />
           </Button>
 
-          {/* Settings */}
+          {/* settings */}
           <Button
             variant="ghost"
             size="icon"
@@ -113,7 +112,7 @@ export function AppSidebar() {
             <Settings className="w-5 h-5" />
           </Button>
 
-          {/* Logout */}
+          {/* logout */}
           <Button className="bg-[#8750F7] hover:bg-[#733DD6] text-white flex items-center gap-2">
             <LogOut className="w-5 h-5" />
             Log Out
