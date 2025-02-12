@@ -40,6 +40,7 @@ export default function Navbar() {
         <NavigationLink path="/projects" route="Projects" />
         <NavigationLink path="/blogs" route="Blogs" />
         <NavigationLink path="/contact" route="Contact" />
+        <NavigationLink path="/dashboard" route="Dashboard" />
         <ModeToggle />
         <Button className="bg-[#8750F7] hover:bg-[#733DD6] text-white dark:text-white">
           <LogInIcon className="w-4 h-4" />
