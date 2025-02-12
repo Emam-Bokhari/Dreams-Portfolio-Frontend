@@ -2,7 +2,7 @@ import Blogs from "@/components/blogs/Blogs";
 import { Fragment } from "react";
 
 export default async function BlogsPage() {
-  const response = await fetch(`${process.env.BASE_URL}/blogs`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/blogs`, {
     next: { revalidate: 30 },
   });
   if (!response.ok) {

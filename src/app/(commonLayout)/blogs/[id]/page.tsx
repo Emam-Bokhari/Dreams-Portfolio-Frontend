@@ -11,9 +11,12 @@ export default async function BlogDetailsPage({
 }) {
   const { id } = await params;
   // console.log(id);
-  const response = await fetch(`${process.env.BASE_URL}/blogs/${id}`, {
-    cache: "no-store",
-  });
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/blogs/${id}`,
+    {
+      cache: "no-store",
+    }
+  );
   const result = await response.json();
   // console.log(result.data);
   const blog = result?.data;

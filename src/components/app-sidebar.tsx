@@ -50,7 +50,7 @@ const blog = [
 const contact = [
   {
     title: "Contacts",
-    url: "#",
+    url: "/dashboard/contacts",
     icon: Users,
   },
 ];

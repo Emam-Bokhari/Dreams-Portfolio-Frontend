@@ -1,7 +1,7 @@
 import Projects from "@/components/projects/projects";
 
 export default async function ProjectsPage() {
-  const response = await fetch(`${process.env.BASE_URL}/projects`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/projects`, {
     next: { revalidate: 30 },
   });
   if (!response.ok) {

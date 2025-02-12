@@ -5,7 +5,7 @@ import Skills from "@/components/home/Skills";
 
 export default async function HomePage() {
   const response = await fetch(
-    `${process.env.BASE_URL}/projects/featured-project`
+    `${process.env.NEXT_PUBLIC_BASE_URL}/projects/featured-project`
   );
   if (!response.ok) {
     throw new Error("Failed to fetch featured project data!");

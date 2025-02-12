@@ -37,10 +37,10 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import Image from "next/image";
-import { TProject } from "@/types/project";
+import { TContact } from "@/types/contact";
 
-export default function AllProjectsPage() {
-  const [projects, setProjects] = React.useState<TProject[]>([]);
+export default function AllContactsPage() {
+  const [contacts, setContacts] = React.useState<TContact[]>([]);
   const [loading, setLoading] = React.useState<boolean>(true);
   const [error, setError] = React.useState<string | null>(null);
 
@@ -53,19 +53,19 @@ export default function AllProjectsPage() {
     React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
 
-  // Fetch projects from API
+  // Fetch contacts from API
   React.useEffect(() => {
     const fetchProjects = async () => {
       try {
         const response = await fetch(
-          `${process.env.NEXT_PUBLIC_BASE_URL}/projects`
+          `${process.env.NEXT_PUBLIC_BASE_URL}/contacts`
         );
         if (!response.ok) {
-          throw new Error("Failed to fetch projects");
+          throw new Error("Failed to fetch contacts");
         }
         const result = await response.json();
         const data = result?.data;
-        setProjects(data);
+        setContacts(data);
       } catch (error: any) {
         setError(error.message);
       } finally {
@@ -75,67 +75,31 @@ export default function AllProjectsPage() {
 
     fetchProjects();
   }, []);
-  console.log(projects);
+  console.log(contacts);
 
-  const columns: ColumnDef<TProject>[] = [
+  const columns: ColumnDef<TContact>[] = [
     {
-      accessorKey: "thumbnail",
-      header: "Thumbnail Image",
+      accessorKey: "name",
+      header: "User Name",
       cell: ({ row }) => (
-        <div className="w-[50px] h-[50px] overflow-hidden rounded-lg">
-          <Image
-            src={row.getValue("thumbnail")}
-            width={50}
-            height={50}
-            alt="Thumbnail Image"
-            className="object-cover"
-          />
-        </div>
+        <div className="font-medium">{row.getValue("name")}</div>
       ),
     },
     {
-      accessorKey: "title",
-      header: "Title",
+      accessorKey: "email",
+      header: "User Email",
       cell: ({ row }) => (
-        <div className="font-medium">{row.getValue("title")}</div>
+        <div className="font-medium">{row.getValue("email")}</div>
       ),
     },
     {
-      accessorKey: "technologiesUsed",
-      header: "Technologies",
-      cell: ({ row }) => {
-        const techs = row.getValue("technologiesUsed") as string[];
-        return <div className="text-sm">{techs?.join(", ")}</div>;
-      },
-    },
-    {
-      accessorKey: "liveLink",
-      header: "Live Link",
+      accessorKey: "message",
+      header: "User Message",
       cell: ({ row }) => (
-        <a
-          href={row.getValue("liveLink")}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-blue-500 underline"
-        >
-          Visit
-        </a>
+        <div className="font-medium">{row.getValue("message")}</div>
       ),
     },
-    {
-      accessorKey: "frontendSourceCode",
-      header: "Frontend Repo Link",
-      cell: ({ row }) => (
-        <a
-          href={row.getValue("frontendSourceCode")}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-blue-500 underline"
-        >
-          Visit
-        </a>
-      ),
-    },
+
     {
       id: "actions",
       enableHiding: false,
@@ -151,24 +115,10 @@ export default function AllProjectsPage() {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
-
-              <DropdownMenuItem
-                onClick={() => navigator.clipboard.writeText(project.liveLink)}
-              >
-                <FaCopy className="mr-2 text-blue-500" />
-                Copy Live Link
-              </DropdownMenuItem>
-
               <DropdownMenuSeparator />
-
               <DropdownMenuItem>
                 <FaEye className="mr-2 text-green-600" /> View Details
               </DropdownMenuItem>
-
-              <DropdownMenuItem>
-                <FaEdit className="mr-2 text-amber-500" /> Edit
-              </DropdownMenuItem>
-
               <DropdownMenuItem>
                 <FaTrash className="mr-2 text-red-600" />
                 Delete
@@ -181,7 +131,7 @@ export default function AllProjectsPage() {
   ];
 
   const table = useReactTable({
-    data: projects,
+    data: contacts,
     columns,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
@@ -217,8 +167,8 @@ export default function AllProjectsPage() {
     <div className="w-full">
       <div className="flex items-center py-4">
         <Input
-          placeholder="Filter projects by title..."
-          value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
+          placeholder="Filter contacts by email..."
+          value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
             table.getColumn("title")?.setFilterValue(event.target.value)
           }
@@ -288,7 +238,7 @@ export default function AllProjectsPage() {
                   colSpan={columns.length}
                   className="h-24 text-center"
                 >
-                  No projects data found.
+                  No contacts data found.
                 </TableCell>
               </TableRow>
             )}

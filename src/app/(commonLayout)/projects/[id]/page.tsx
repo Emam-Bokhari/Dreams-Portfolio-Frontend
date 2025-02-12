@@ -7,9 +7,12 @@ export default async function ProjectDetailsPage({
 }) {
   const { id } = await params;
   //   console.log(id);
-  const response = await fetch(`${process.env.BASE_URL}/projects/${id}`, {
-    cache: "no-store",
-  });
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/projects/${id}`,
+    {
+      cache: "no-store",
+    }
+  );
   if (!response.ok) {
     throw new Error("Failed to fetch project details data!");
   }

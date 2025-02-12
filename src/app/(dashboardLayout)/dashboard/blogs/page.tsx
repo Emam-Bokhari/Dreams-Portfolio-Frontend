@@ -54,11 +54,13 @@ export default function AllBlogsPage() {
     React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
 
-  // Fetch projects from API
+  // Fetch blogs from API
   React.useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/v1/blogs");
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_BASE_URL}/blogs`
+        );
         if (!response.ok) {
           throw new Error("Failed to fetch blogs");
         }
@@ -74,7 +76,7 @@ export default function AllBlogsPage() {
 
     fetchProjects();
   }, []);
-  console.log(blogs);
+  //   console.log(blogs);
 
   const columns: ColumnDef<TBlog>[] = [
     {
@@ -198,7 +200,7 @@ export default function AllBlogsPage() {
     <div className="w-full">
       <div className="flex items-center py-4">
         <Input
-          placeholder="Filter projects by title..."
+          placeholder="Filter blogs by title..."
           value={(table.getColumn("title")?.getFilterValue() as string) ?? ""}
           onChange={(event) =>
             table.getColumn("title")?.setFilterValue(event.target.value)
@@ -269,7 +271,7 @@ export default function AllBlogsPage() {
                   colSpan={columns.length}
                   className="h-24 text-center"
                 >
-                  No projects found.
+                  No blogs data found.
                 </TableCell>
               </TableRow>
             )}
