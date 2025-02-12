@@ -12,19 +12,42 @@ type ProjectDetailsProps = {
 };
 
 export default function ProjectDetails({ project }: ProjectDetailsProps) {
+  // Function to check if a URL is valid
+  function isValidUrl(url: string | undefined): boolean {
+    try {
+      if (!url) return false;
+      new URL(url); // Try to create a new URL object
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
   return (
     <Fragment>
       <div className="mt-10  space-y-4 dark:bg-[#140C1C] rounded-md p-4">
         {/* image */}
         <div className="h-[600px]">
-          <Image
-            src={project?.thumbnail}
-            alt="Featured Project"
-            sizes="100vw"
-            width={1200}
-            height={500}
-            className="w-full h-full object-cover rounded"
-          />
+          {isValidUrl(project?.thumbnail) ? (
+            <Image
+              src={project?.thumbnail}
+              alt="Featured Project"
+              sizes="100vw"
+              width={1200}
+              height={500}
+              className="w-full h-full object-cover rounded"
+            />
+          ) : (
+            // Custom placeholder image
+            <div className="w-full h-full bg-gray-300 rounded flex justify-center items-center">
+              <Image
+                src="https://media.istockphoto.com/id/1409329028/vector/no-picture-available-placeholder-thumbnail-icon-illustration-design.jpg?s=612x612&w=0&k=20&c=_zOuJu755g2eEUioiOUdz_mHKJQJn-tDgIAhQzyeKUQ="
+                alt="Placeholder Image"
+                width={1200}
+                height={500}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          )}
         </div>
         {/* title and timeline*/}
         <div className="flex flex-col xl:flex-row gap-4 xl:gap-0 xl:justify-between">
@@ -143,9 +166,7 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
             className="bg-[#8750F7] hover:bg-[#733DD6] text-white"
           >
             <Link
-              href={project?.liveLink}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={isValidUrl(project?.liveLink) ? project?.liveLink : "/"}
             >
               Live Demo <PlayCircle size={18} />
             </Link>
@@ -156,7 +177,11 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
               className="bg-[#8750F7] hover:bg-[#733DD6] text-white"
             >
               <Link
-                href={project?.frontendSourceCode as string}
+                href={
+                  isValidUrl(project?.frontendSourceCode)
+                    ? project?.frontendSourceCode
+                    : "/"
+                }
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -170,7 +195,11 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
               className="bg-[#8750F7] hover:bg-[#733DD6] text-white"
             >
               <Link
-                href={project?.backendSourceCode as string}
+                href={
+                  isValidUrl(project?.backendSourceCode)
+                    ? project?.backendSourceCode
+                    : "/"
+                }
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -184,7 +213,11 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
               className="bg-[#8750F7] hover:bg-[#733DD6] text-white"
             >
               <Link
-                href={project?.apiDocumentation as string}
+                href={
+                  isValidUrl(project?.apiDocumentation)
+                    ? project?.apiDocumentation
+                    : "/"
+                }
                 target="_blank"
                 rel="noopener noreferrer"
               >

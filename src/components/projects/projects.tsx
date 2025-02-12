@@ -15,6 +15,17 @@ type ProjectProps = {
 };
 
 export default function Projects({ projects }: ProjectProps) {
+  // Function to check if a URL is valid
+  function isValidUrl(url: string | undefined): boolean {
+    try {
+      if (!url) return false;
+      new URL(url);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
   const badgeColors = [
     { base: "bg-blue-100 text-blue-800", hover: "hover:bg-blue-200" },
     { base: "bg-green-100 text-green-800", hover: "hover:bg-green-200" },
@@ -37,16 +48,29 @@ export default function Projects({ projects }: ProjectProps) {
               key={project?._id}
               className="w-full dark:bg-[#140C1C]  overflow-hidden flex flex-col gap-5 p-4 "
             >
-              {/* Left Side - Image */}
+              {/*  Image */}
               <div className="h-[350px]">
-                <Image
-                  src={project?.thumbnail}
-                  alt="Featured Project"
-                  sizes="100vw"
-                  width={1200}
-                  height={500}
-                  className="w-full h-full object-cover rounded"
-                />
+                {isValidUrl(project?.thumbnail) ? (
+                  <Image
+                    src={project?.thumbnail}
+                    alt="Featured Project"
+                    sizes="100vw"
+                    width={1200}
+                    height={500}
+                    className="w-full h-full object-cover rounded"
+                  />
+                ) : (
+                  // Custom placeholder image
+                  <div className="w-full h-full bg-gray-300 rounded flex justify-center items-center">
+                    <Image
+                      src="https://media.istockphoto.com/id/1409329028/vector/no-picture-available-placeholder-thumbnail-icon-illustration-design.jpg?s=612x612&w=0&k=20&c=_zOuJu755g2eEUioiOUdz_mHKJQJn-tDgIAhQzyeKUQ="
+                      alt="Placeholder Image"
+                      width={1200}
+                      height={500}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                )}
               </div>
 
               {/* Right Side - Content */}
@@ -98,7 +122,11 @@ export default function Projects({ projects }: ProjectProps) {
                       className="bg-[#8750F7] hover:bg-[#733DD6] text-white"
                     >
                       <Link
-                        href={project?.liveLink}
+                        href={
+                          isValidUrl(project?.liveLink)
+                            ? project?.liveLink
+                            : "/"
+                        }
                         target="_blank"
                         rel="noopener noreferrer"
                       >
@@ -110,7 +138,11 @@ export default function Projects({ projects }: ProjectProps) {
                       className="bg-[#8750F7] hover:bg-[#733DD6] text-white"
                     >
                       <Link
-                        href={project?.frontendSourceCode as string}
+                        href={
+                          isValidUrl(project?.frontendSourceCode)
+                            ? project?.frontendSourceCode
+                            : "/"
+                        }
                         target="_blank"
                         rel="noopener noreferrer"
                       >
@@ -124,7 +156,11 @@ export default function Projects({ projects }: ProjectProps) {
                         className="bg-[#8750F7] hover:bg-[#733DD6] text-white"
                       >
                         <Link
-                          href={project?.backendSourceCode as string}
+                          href={
+                            isValidUrl(project?.backendSourceCode)
+                              ? project?.backendSourceCode
+                              : "/"
+                          }
                           target="_blank"
                           rel="noopener noreferrer"
                         >

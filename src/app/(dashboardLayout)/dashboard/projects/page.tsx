@@ -81,17 +81,31 @@ export default function AllProjectsPage() {
     {
       accessorKey: "thumbnail",
       header: "Thumbnail Image",
-      cell: ({ row }) => (
-        <div className="w-[50px] h-[50px] overflow-hidden rounded-lg">
-          <Image
-            src={row.getValue("thumbnail")}
-            width={50}
-            height={50}
-            alt="Thumbnail Image"
-            className="object-cover"
-          />
-        </div>
-      ),
+      cell: ({ row }) => {
+        const thumbnail = row.getValue("thumbnail");
+
+        const isValidUrl =
+          typeof thumbnail === "string" &&
+          (thumbnail.startsWith("/") || thumbnail.startsWith("http"));
+
+        return (
+          <div className="w-[50px] h-[50px] overflow-hidden rounded-lg">
+            {isValidUrl ? (
+              <Image
+                src={thumbnail}
+                width={50}
+                height={50}
+                alt="Thumbnail Image"
+                className="object-cover"
+              />
+            ) : (
+              <div className="w-full h-full flex items-center justify-center bg-gray-300">
+                <span>Invalid Image</span>
+              </div>
+            )}
+          </div>
+        );
+      },
     },
     {
       accessorKey: "title",
