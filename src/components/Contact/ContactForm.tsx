@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
+"use client";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "../ui/input";
@@ -10,8 +13,71 @@ import facebook from "@/assets/facebook.png";
 import linkedin from "@/assets/linkedin.png";
 import github from "@/assets/github-icon-2.svg";
 import email from "@/assets/email.png";
+import { useState } from "react";
+import { toast } from "sonner";
 
 export default function ContactForm() {
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    message: "",
+  });
+
+  function handleChange(
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) {
+    const { name, value } = event.target;
+
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  }
+
+  async function handleSubmit(event: React.FormEvent) {
+    event.preventDefault();
+    console.log(formData, "Form data");
+
+    try {
+      const response = await fetch("http://localhost:5000/api/v1/contacts", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        toast.error("Failed to send message");
+        return;
+      }
+
+      const data = await response.json();
+
+      if (data?.success) {
+        toast.success("Message send successfully", {
+          duration: 2000,
+        });
+      } else {
+        toast.error("Failed to send message");
+      }
+
+      // reset field
+      setFormData({
+        name: "",
+        phone: "",
+        email: "",
+        message: "",
+      });
+    } catch (err: any) {
+      // console.log(err);
+      if (err) {
+        toast.error("Something went wrong!");
+      }
+    }
+  }
+
   return (
     <div>
       {/* title */}
@@ -30,36 +96,75 @@ export default function ContactForm() {
 
           <div className="flex gap-20 items-center">
             {/* Contact Form */}
-            <form className="space-y-4 flex-1">
+            <form onSubmit={handleSubmit} className="space-y-4 flex-1">
               {/* name */}
               <div className="space-y-2">
-                <Label className="text-base text-[#110E18] dark:text-white">
-                  Your Name
+                <Label
+                  htmlFor="name"
+                  className="text-base text-[#110E18] dark:text-white"
+                >
+                  Your Name<span className="text-red-500 ml-1">*</span>
                 </Label>
-                <Input placeholder="Enter Your Name" className="h-10 " />
+                <Input
+                  required
+                  name="name"
+                  value={formData?.name}
+                  onChange={handleChange}
+                  placeholder="Enter Your Name"
+                  className="h-10 "
+                />
               </div>
               <div className="space-y-2">
-                <Label className="text-base text-[#110E18] dark:text-white">
-                  Your Email
+                <Label
+                  htmlFor="email"
+                  className="text-base text-[#110E18] dark:text-white"
+                >
+                  Your Email<span className="text-red-500 ml-1">*</span>
                 </Label>
-                <Input placeholder="Enter Your Email" className="h-10" />
+                <Input
+                  required
+                  name="email"
+                  value={formData?.email}
+                  onChange={handleChange}
+                  placeholder="Enter Your Email"
+                  className="h-10"
+                />
               </div>
               <div className="space-y-2">
-                <Label className="text-base text-[#110E18] dark:text-white">
+                <Label
+                  htmlFor="phone"
+                  className="text-base text-[#110E18] dark:text-white"
+                >
                   Your Phone Number
                 </Label>
-                <Input placeholder="Enter Your Number" className="h-10" />
+                <Input
+                  value={formData?.phone}
+                  name="phone"
+                  onChange={handleChange}
+                  placeholder="Enter Your Number"
+                  className="h-10"
+                />
               </div>
               <div className="space-y-2">
-                <Label className="text-base text-[#110E18] dark:text-white">
-                  Your Message
+                <Label
+                  htmlFor="message"
+                  className="text-base text-[#110E18] dark:text-white"
+                >
+                  Your Message<span className="text-red-500 ml-1">*</span>
                 </Label>
                 <Textarea
+                  required
+                  name="message"
+                  value={formData?.message}
+                  onChange={handleChange}
                   placeholder="Enter Your Message ..."
                   className="h-36 text-[#110E18] dark:text-white"
                 />
               </div>
-              <Button className="bg-[#8750F7] hover:bg-[#733DD6] text-white">
+              <Button
+                type="submit"
+                className="bg-[#8750F7] hover:bg-[#733DD6] text-white"
+              >
                 Send Message
                 <Image src={email} alt="Email Icon" width={24} height={24} />
               </Button>
