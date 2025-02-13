@@ -1,5 +1,4 @@
 import { Fragment } from "react";
-import SectionTitle from "../shared/SectionTitle";
 import Image from "next/image";
 import calendar from "@/assets/schedule.png";
 import { Badge } from "../ui/badge";

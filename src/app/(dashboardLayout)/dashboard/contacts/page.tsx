@@ -38,6 +38,7 @@ import {
 } from "@/components/ui/table";
 import Image from "next/image";
 import { TContact } from "@/types/contact";
+import Link from "next/link";
 
 export default function AllContactsPage() {
   const [contacts, setContacts] = React.useState<TContact[]>([]);
@@ -104,6 +105,7 @@ export default function AllContactsPage() {
       id: "actions",
       enableHiding: false,
       cell: ({ row }) => {
+        const contact = row.original;
         return (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -119,7 +121,12 @@ export default function AllContactsPage() {
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuItem>
-                <FaEye className="mr-2 text-green-600" /> View Details
+                <Link
+                  href={`/dashboard/contacts/contact-details/${contact?._id}`}
+                  className="flex gap-2"
+                >
+                  <FaEye className="mr-2 text-green-600" /> View Details
+                </Link>
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <FaTrash className="mr-2 text-red-600" />

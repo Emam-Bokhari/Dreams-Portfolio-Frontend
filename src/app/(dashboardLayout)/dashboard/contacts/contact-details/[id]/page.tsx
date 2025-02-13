@@ -1,7 +1,7 @@
+import ContactDetails from "@/components/contact/ContactDetails";
 import DashboardSectionTitle from "@/components/dashboard/shared/DashboardSectionTitle";
-import ProjectDetails from "@/components/shared/ProjectDetails";
 
-export default async function DashboardProjectDetailsPage({
+export default async function DashboardContactDetailsPage({
   params,
 }: {
   params: Promise<{ id: string }>;
@@ -9,22 +9,23 @@ export default async function DashboardProjectDetailsPage({
   const { id } = await params;
   //   console.log(id);
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/projects/${id}`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/contacts/${id}`,
     {
       cache: "no-store",
     }
   );
   if (!response.ok) {
-    throw new Error("Failed to fetch project details data!");
+    throw new Error("Failed to fetch contact details data!");
   }
   const result = await response.json();
-  const project = result?.data || {};
-  // console.log(project);
+  const contact = result?.data || {};
+  console.log(contact);
   return (
     <div>
       {/* dashboard title */}
-      <DashboardSectionTitle title="Project Details" />
-      <ProjectDetails project={project} />
+      <DashboardSectionTitle title="Contact Details" />
+
+      <ContactDetails contact={contact} />
     </div>
   );
 }

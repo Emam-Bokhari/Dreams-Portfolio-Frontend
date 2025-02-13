@@ -5,4 +5,5 @@ export type TContact = {
     phone?: string;
     message: string;
     isDeleted?: boolean;
+    createdAt: string;
 };
