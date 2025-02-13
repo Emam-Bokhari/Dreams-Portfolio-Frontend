@@ -1,4 +1,5 @@
-import { LogOut, Moon, Settings } from "lucide-react";
+"use client";
+import { LogOut, Settings } from "lucide-react";
 import logo from "@/assets/Logo.png";
 
 import {
@@ -18,8 +19,8 @@ import {
   Users,
 } from "lucide-react";
 import { Button } from "./ui/button";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { ModeToggle } from "./shared/ModeToggle";
+import { signOut } from "next-auth/react";
 
 // menu items
 const project = [
@@ -56,7 +57,20 @@ const contact = [
   },
 ];
 
-export function AppSidebar() {
+export type SessionProps = {
+  user?: {
+    name?: string | null | undefined;
+    email?: string | null | undefined;
+    image?: string | null | undefined;
+  };
+};
+
+export function AppSidebar({
+  session,
+}: {
+  session: SessionProps | null | undefined;
+}) {
+  console.log(session);
   return (
     <Sidebar className="bg-[#140C1C] border-[#27272A]">
       <SidebarHeader className="bg-[#140C1C]">
@@ -78,18 +92,21 @@ export function AppSidebar() {
       <SidebarFooter className="border-t border-gray-700 p-3 bg-[#140C1C]">
         {/* user info */}
         <div className="flex items-center gap-3">
-          <Avatar>
-            <AvatarImage
-              src="https://img.freepik.com/free-photo/portrait-white-man-isolated_53876-40306.jpg?t=st=1739330618~exp=1739334218~hmac=48e3a273f703d93d105f61cfda8b83bf464b093f5dd5f75385a1fda545a9b24c&w=996"
-              alt="User Avatar"
-            />
-            <AvatarFallback>MR</AvatarFallback>
-          </Avatar>
+          <div className="relative w-12 h-12 rounded-full overflow-hidden bg-gray-200 flex items-center justify-center text-lg font-semibold text-gray-600">
+            {session?.user?.image ? (
+              <Image
+                src={session?.user?.image}
+                alt="Image"
+                layout="fill"
+                objectFit="cover"
+              />
+            ) : (
+              <span>MR</span>
+            )}
+          </div>
           <div className="text-white text-sm">
-            <p className="font-medium text-white">Moshfiqur Rahman</p>
-            <p className="text-[11px] text-gray-400">
-              moshfiqurrahman37@email.com
-            </p>
+            <p className="font-medium text-white">{session?.user?.name}</p>
+            <p className="text-[11px] text-gray-400">{session?.user?.email}</p>
           </div>
         </div>
 
@@ -109,7 +126,10 @@ export function AppSidebar() {
           </Button>
 
           {/* logout */}
-          <Button className="bg-[#8750F7] hover:bg-[#733DD6] text-white flex items-center gap-2">
+          <Button
+            onClick={() => signOut()}
+            className="bg-[#8750F7] hover:bg-[#733DD6] text-white flex items-center gap-2"
+          >
             <LogOut className="w-5 h-5" />
             Log Out
           </Button>

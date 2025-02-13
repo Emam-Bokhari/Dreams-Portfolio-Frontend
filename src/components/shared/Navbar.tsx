@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import logo from "@/assets/Logo.png";
 import Link from "next/link";
@@ -10,6 +11,8 @@ import {
   Menu,
   Contact,
   LogInIcon,
+  LogOutIcon,
+  LayoutDashboard,
 } from "lucide-react";
 import {
   DropdownMenu,
@@ -22,8 +25,22 @@ import {
 } from "@/components/ui/dropdown-menu";
 import NavigationLink from "./NavigationLink";
 import { ModeToggle } from "./ModeToggle";
+import { signOut } from "next-auth/react";
 
-export default function Navbar() {
+export type SessionProps = {
+  user?: {
+    name?: string | null | undefined;
+    email?: string | null | undefined;
+    image?: string | null | undefined;
+  };
+};
+
+export default function Navbar({
+  session,
+}: {
+  session: SessionProps | null | undefined;
+}) {
+  // console.log(session);
   return (
     <nav className="flex items-center justify-between p-4 border-2 border-red-500 text-[#110E18] dark:text-white  lg:max-w-screen-2xl mx-auto">
       {/*  Logo */}
@@ -40,14 +57,26 @@ export default function Navbar() {
         <NavigationLink path="/projects" route="Projects" />
         <NavigationLink path="/blogs" route="Blogs" />
         <NavigationLink path="/contact" route="Contact" />
-        <NavigationLink path="/dashboard" route="Dashboard" />
+        {session?.user && (
+          <NavigationLink path="/dashboard" route="Dashboard" />
+        )}
         <ModeToggle />
-        <Link href="/login">
-          <Button className="bg-[#8750F7] hover:bg-[#733DD6] text-white dark:text-white">
-            <LogInIcon className="w-4 h-4" />
-            Login
+        {session?.user ? (
+          <Button
+            onClick={() => signOut()}
+            className="bg-[#8750F7] hover:bg-[#733DD6] text-white dark:text-white"
+          >
+            <LogOutIcon className="w-4 h-4" />
+            LogOut
           </Button>
-        </Link>
+        ) : (
+          <Link href="/login">
+            <Button className="bg-[#8750F7] hover:bg-[#733DD6] text-white dark:text-white">
+              <LogInIcon className="w-4 h-4" />
+              Login
+            </Button>
+          </Link>
+        )}
       </div>
 
       {/* Hamburger Menu for mobile */}
@@ -62,31 +91,58 @@ export default function Navbar() {
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem>
-                <Home className="w-4 h-4  " />
-                Home
+                <Link href="/" className="flex gap-2">
+                  <Home className="w-4 h-4  " />
+                  Home
+                </Link>
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <Info className="w-4 h-4" />
-                About
+                <Link href="/about" className="flex gap-2">
+                  <Info className="w-4 h-4" />
+                  About
+                </Link>
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <Briefcase className="w-4 h-4" />
-                Projects
+                <Link href="/projects" className="flex gap-2">
+                  <Briefcase className="w-4 h-4" />
+                  Projects
+                </Link>
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <PenTool className="w-4 h-4" />
-                Blogs
+                <Link href="/blogs" className="flex gap-2">
+                  <PenTool className="w-4 h-4" />
+                  Blogs
+                </Link>
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <Contact className="w-4 h-4" />
-                Contact
+                <Link href="/contact" className="flex gap-2">
+                  <Contact className="w-4 h-4" />
+                  Contact
+                </Link>
               </DropdownMenuItem>
+              {session?.user && (
+                <DropdownMenuItem>
+                  <Link href="/dashboard" className="flex gap-2">
+                    <LayoutDashboard className="w-4 h-4" />
+                    Dashboard
+                  </Link>
+                </DropdownMenuItem>
+              )}
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
-              <LogInIcon className="w-4 h-4" />
-              Login
-            </DropdownMenuItem>
+            {session?.user ? (
+              <DropdownMenuItem onClick={() => signOut()}>
+                <LogOutIcon className="w-4 h-4" />
+                LogOut
+              </DropdownMenuItem>
+            ) : (
+              <DropdownMenuItem>
+                <Link href="/login" className="flex gap-2">
+                  <LogInIcon className="w-4 h-4" />
+                  Login
+                </Link>
+              </DropdownMenuItem>
+            )}
           </DropdownMenuContent>
         </DropdownMenu>
       </div>

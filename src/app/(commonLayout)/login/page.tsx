@@ -1,9 +1,12 @@
+"use client";
 import { Fragment } from "react";
 import facebook from "@/assets/facebook-icon.png";
 import google from "@/assets/Google.svg";
 import gmail from "@/assets/gmail.png";
 import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
+import { signIn } from "next-auth/react";
+import github from "@/assets/github-icon-1.svg";
 
 export default function LoginPage() {
   return (
@@ -18,17 +21,35 @@ export default function LoginPage() {
               Use your email or another service to continue
             </p>
             {/* google login */}
-            <div className=" flex justify-between p-2 rounded bg-[#F2F3F5] hover:bg-gray-200 dark:bg-gray-300 dark:hover:bg-[#F2F3F5] transition-colors duration-200">
-              <Image src={google} width={25} height={25} alt="Google Icon" />
-              <p className="text-[#110E18] text-base">Continue with Google</p>
-            </div>
-            {/* email login */}
-            <div className=" flex justify-between p-2 rounded bg-[#F2F3F5] hover:bg-gray-200 dark:bg-gray-300 dark:hover:bg-[#F2F3F5] transition-colors duration-200">
-              <Image src={gmail} width={25} height={25} alt="Gmail Icon" />
-              <p className="text-[#110E18] text-base">Continue with Email</p>
-            </div>
+            <button
+              onClick={() =>
+                signIn("google", {
+                  callbackUrl: "/dashboard",
+                })
+              }
+              className="w-full"
+            >
+              <div className=" flex justify-between p-2 rounded bg-[#F2F3F5] hover:bg-gray-200 dark:bg-gray-300 dark:hover:bg-[#F2F3F5] transition-colors duration-200">
+                <Image src={google} width={25} height={25} alt="Google Icon" />
+                <p className="text-[#110E18] text-base">Continue with Google</p>
+              </div>
+            </button>
+            {/* github login */}
+            <button
+              onClick={() =>
+                signIn("github", {
+                  callbackUrl: "/dashboard",
+                })
+              }
+              className="w-full"
+            >
+              <div className=" flex justify-between p-2 rounded bg-[#F2F3F5] hover:bg-gray-200 dark:bg-gray-300 dark:hover:bg-[#F2F3F5] transition-colors duration-200">
+                <Image src={github} width={25} height={25} alt="Gmail Icon" />
+                <p className="text-[#110E18] text-base">Continue with GitHub</p>
+              </div>
+            </button>
             {/* facebook login */}
-            <div className=" flex justify-between p-2 rounded bg-[#F2F3F5] hover:bg-gray-200 dark:bg-gray-300 dark:hover:bg-[#F2F3F5] transition-colors duration-200">
+            <div className=" flex justify-between p-2 rounded bg-[#F2F3F5] hover:bg-gray-200 dark:bg-gray-300 dark:hover:bg-[#F2F3F5] transition-colors duration-200 cursor-not-allowed">
               <Image
                 src={facebook}
                 width={25}
