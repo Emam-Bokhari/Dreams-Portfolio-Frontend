@@ -24,30 +24,53 @@ export default function BlogDetails({ blog }: BlogProps) {
   const getRandomColor = () =>
     badgeColors[Math.floor(Math.random() * badgeColors.length)];
 
+  // Function to check if a URL is valid
+  function isValidUrl(url: string | undefined): boolean {
+    try {
+      if (!url) return false;
+      new URL(url);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
   return (
     <Fragment>
       <SectionTitle title="Blog Details" />
       <div className="mt-10 border-2 border-red-500 space-y-4">
-        {/* image */}
+        {/*  Image */}
         <div className="h-[600px]">
-          <Image
-            src={blog?.thumbnail}
-            alt="Featured Project"
-            sizes="100vw"
-            width={1200}
-            height={500}
-            className="w-full h-full object-cover rounded"
-          />
+          {isValidUrl(blog?.thumbnail) ? (
+            <Image
+              src={blog?.thumbnail}
+              alt={blog?.title}
+              sizes="100vw"
+              width={1200}
+              height={500}
+              className="w-full h-full object-cover rounded"
+            />
+          ) : (
+            // Custom placeholder image
+            <div className="w-full h-full bg-gray-300 rounded flex justify-center items-center">
+              <Image
+                src="https://media.istockphoto.com/id/1409329028/vector/no-picture-available-placeholder-thumbnail-icon-illustration-design.jpg?s=612x612&w=0&k=20&c=_zOuJu755g2eEUioiOUdz_mHKJQJn-tDgIAhQzyeKUQ="
+                alt="Placeholder Image"
+                width={1200}
+                height={500}
+                className="w-full h-full object-cover rounded"
+              />
+            </div>
+          )}
         </div>
+
         {/* title and published date*/}
         <div className="flex flex-col xl:flex-row gap-4 xl:gap-0 xl:justify-between">
           <h2 className="text-2xl text-[#8750F7] font-bold">{blog?.title}</h2>
           <div className="flex items-center space-x-3 ">
             <p className="text-base text-[#989BA4]">
               {" "}
-              {moment(blog?.publishedDate)
-                .tz("Asia/Dhaka")
-                .format("MMMM D, YYYY")}
+              {moment(blog?.createdAt).tz("Asia/Dhaka").format("MMMM D, YYYY")}
             </p>
             <Image width={25} height={25} alt="Calendar Icon" src={calendar} />
           </div>

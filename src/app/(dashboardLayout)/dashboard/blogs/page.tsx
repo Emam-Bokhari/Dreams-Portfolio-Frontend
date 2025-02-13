@@ -130,10 +130,10 @@ export default function AllBlogsPage() {
       ),
     },
     {
-      accessorKey: "publishedDate",
+      accessorKey: "createdAt",
       header: "Published Date",
       cell: ({ row }) => {
-        const date = row.getValue("publishedDate");
+        const date = row.getValue("createdAt");
 
         return (
           <div className="font-medium">

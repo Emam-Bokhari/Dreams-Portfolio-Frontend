@@ -4,7 +4,6 @@ import DashboardSectionTitle from "@/components/dashboard/shared/DashboardSectio
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import "react-datepicker/dist/react-datepicker.css";
 import {
   Select,
   SelectContent,
@@ -15,7 +14,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import DatePicker from "react-datepicker";
+import { FilePlus, Send } from "lucide-react";
 import React, { Fragment, useState } from "react";
 import { toast } from "sonner";
 
@@ -36,7 +35,7 @@ export default function CreateProjectPage() {
     projectGoals: "",
     futureImprovements: "",
     securityConsiderations: "",
-    projectTimeline: null as Date | null,
+    projectTimeline: "",
   });
 
   const roles = [
@@ -95,13 +94,6 @@ export default function CreateProjectPage() {
     });
   };
 
-  const handleDateChange = (date: Date | null) => {
-    setFormData({
-      ...formData,
-      projectTimeline: date,
-    });
-  };
-
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
     console.log(formData, "Form data");
@@ -147,7 +139,7 @@ export default function CreateProjectPage() {
         projectGoals: "",
         futureImprovements: "",
         securityConsiderations: "",
-        projectTimeline: null as Date | null,
+        projectTimeline: "",
       });
     } catch (err: any) {
       // console.log(err);
@@ -201,15 +193,13 @@ export default function CreateProjectPage() {
                 <label htmlFor="projectTimeline" className="block font-medium">
                   Project Timeline:
                 </label>
-                <div className="relative">
-                  <DatePicker
-                    selected={formData.projectTimeline}
-                    onChange={handleDateChange}
-                    dateFormat="PPP"
-                    className="w-[240px] p-2 border rounded-lg"
-                    placeholderText="Pick a date"
-                  />
-                </div>
+                <Input
+                  required
+                  placeholder="Enter project timeline (e.g, Completed in 25days)"
+                  name="projectTimeline"
+                  value={formData.projectTimeline}
+                  onChange={handleChange}
+                />
               </div>
 
               {/* project role */}
@@ -413,7 +403,8 @@ export default function CreateProjectPage() {
                 type="submit"
                 className="bg-[#8750F7] text-white hover:bg-[#733DD6] "
               >
-                Submit
+                <FilePlus size={18} />
+                Create Project
               </Button>
             </div>
           </div>

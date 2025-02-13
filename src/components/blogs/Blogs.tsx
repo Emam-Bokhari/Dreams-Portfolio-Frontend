@@ -14,6 +14,16 @@ type BlogsProps = {
 };
 
 export default function Blogs({ blogs }: BlogsProps) {
+  // Function to check if a URL is valid
+  function isValidUrl(url: string | undefined): boolean {
+    try {
+      if (!url) return false;
+      new URL(url);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
   return (
     <Fragment>
       <SectionTitle title="Blogs" />
@@ -24,16 +34,29 @@ export default function Blogs({ blogs }: BlogsProps) {
               key={blog?._id}
               className="w-full dark:bg-[#140C1C]  overflow-hidden flex flex-col gap-5 p-4 "
             >
-              {/* Left Side - Image */}
+              {/*  Image */}
               <div className="h-[250px]">
-                <Image
-                  src={blog?.thumbnail}
-                  alt="Featured Project"
-                  sizes="100vw"
-                  width={1200}
-                  height={500}
-                  className="w-full h-full object-cover rounded"
-                />
+                {isValidUrl(blog?.thumbnail) ? (
+                  <Image
+                    src={blog?.thumbnail}
+                    alt={blog?.title}
+                    sizes="100vw"
+                    width={1200}
+                    height={500}
+                    className="w-full h-full object-cover rounded"
+                  />
+                ) : (
+                  // Custom placeholder image
+                  <div className="w-full h-full bg-gray-300 rounded flex justify-center items-center">
+                    <Image
+                      src="https://media.istockphoto.com/id/1409329028/vector/no-picture-available-placeholder-thumbnail-icon-illustration-design.jpg?s=612x612&w=0&k=20&c=_zOuJu755g2eEUioiOUdz_mHKJQJn-tDgIAhQzyeKUQ="
+                      alt="Placeholder Image"
+                      width={1200}
+                      height={500}
+                      className="w-full h-full object-cover rounded-md"
+                    />
+                  </div>
+                )}
               </div>
 
               {/* Right Side - Content */}

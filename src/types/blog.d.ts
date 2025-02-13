@@ -9,4 +9,5 @@ export type TBlog = {
     mainContent: string;
     tags?: string[];
     isDeleted?: boolean;
+    createdAt: string;
 };

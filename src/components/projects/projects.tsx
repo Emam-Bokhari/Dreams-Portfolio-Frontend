@@ -61,13 +61,13 @@ export default function Projects({ projects }: ProjectProps) {
                   />
                 ) : (
                   // Custom placeholder image
-                  <div className="w-full h-full bg-gray-300 rounded flex justify-center items-center">
+                  <div className="w-full h-full bg-gray-300 rounded flex justify-center items-center ">
                     <Image
                       src="https://media.istockphoto.com/id/1409329028/vector/no-picture-available-placeholder-thumbnail-icon-illustration-design.jpg?s=612x612&w=0&k=20&c=_zOuJu755g2eEUioiOUdz_mHKJQJn-tDgIAhQzyeKUQ="
                       alt="Placeholder Image"
                       width={1200}
                       height={500}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover rounded"
                     />
                   </div>
                 )}
