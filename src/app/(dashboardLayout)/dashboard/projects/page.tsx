@@ -40,11 +40,10 @@ import Image from "next/image";
 import { TProject } from "@/types/project";
 import Link from "next/link";
 import { toast } from "sonner";
-import { useRouter } from "next/navigation";
+import DashboardSectionTitle from "@/components/dashboard/shared/DashboardSectionTitle";
 
 export default function AllProjectsPage() {
   const [projects, setProjects] = React.useState<TProject[]>([]);
-  const [loading, setLoading] = React.useState<boolean>(true);
   const [error, setError] = React.useState<string | null>(null);
 
   // Table states
@@ -71,8 +70,6 @@ export default function AllProjectsPage() {
         setProjects(data);
       } catch (error: any) {
         setError(error.message);
-      } finally {
-        setLoading(false);
       }
     };
 
@@ -149,7 +146,7 @@ export default function AllProjectsPage() {
       accessorKey: "title",
       header: "Title",
       cell: ({ row }) => (
-        <div className="font-medium">{row.getValue("title")}</div>
+        <div className="font-medium capitalize">{row.getValue("title")}</div>
       ),
     },
     {
@@ -157,7 +154,7 @@ export default function AllProjectsPage() {
       header: "Technologies",
       cell: ({ row }) => {
         const techs = row.getValue("technologiesUsed") as string[];
-        return <div className="text-sm">{techs?.join(", ")}</div>;
+        return <div className="text-sm capitalize">{techs?.join(", ")}</div>;
       },
     },
     {
@@ -274,16 +271,13 @@ export default function AllProjectsPage() {
     },
   });
 
-  if (loading) {
-    return <div className="text-center py-4">Loading...</div>;
-  }
-
   if (error) {
     return <div className="text-center py-4 text-red-500">{error}</div>;
   }
 
   return (
     <div className="w-full">
+      <DashboardSectionTitle title="Projects" />
       <div className="flex items-center py-4">
         <Input
           placeholder="Filter projects by title..."

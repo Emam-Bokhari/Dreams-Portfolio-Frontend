@@ -21,6 +21,7 @@ import {
 import { Button } from "./ui/button";
 import { ModeToggle } from "./shared/ModeToggle";
 import { signOut } from "next-auth/react";
+import { usePathname } from "next/navigation";
 
 // menu items
 const project = [
@@ -70,7 +71,8 @@ export function AppSidebar({
 }: {
   session: SessionProps | null | undefined;
 }) {
-  console.log(session);
+  // console.log(session);
+  const pathName = usePathname();
   return (
     <Sidebar className="bg-[#140C1C] border-[#27272A]">
       <SidebarHeader className="bg-[#140C1C]">
@@ -85,9 +87,17 @@ export function AppSidebar({
         </Link>
       </SidebarHeader>
       <SidebarContent className="bg-[#140C1C]">
-        <SidebarGroupComponent label="Project" items={project} />
-        <SidebarGroupComponent label="Blog" items={blog} />
-        <SidebarGroupComponent label="Contact" items={contact} />
+        <SidebarGroupComponent
+          label="Project"
+          items={project}
+          pathName={pathName}
+        />
+        <SidebarGroupComponent label="Blog" items={blog} pathName={pathName} />
+        <SidebarGroupComponent
+          label="Contact"
+          items={contact}
+          pathName={pathName}
+        />
       </SidebarContent>
       <SidebarFooter className="border-t border-gray-700 p-3 bg-[#140C1C]">
         {/* user info */}

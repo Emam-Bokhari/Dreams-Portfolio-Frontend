@@ -41,10 +41,10 @@ import { TBlog } from "@/types/blog";
 import moment from "moment-timezone";
 import Link from "next/link";
 import { toast } from "sonner";
+import DashboardSectionTitle from "@/components/dashboard/shared/DashboardSectionTitle";
 
 export default function AllBlogsPage() {
   const [blogs, setBlogs] = React.useState<TBlog[]>([]);
-  const [loading, setLoading] = React.useState<boolean>(true);
   const [error, setError] = React.useState<string | null>(null);
 
   // Table states
@@ -71,8 +71,6 @@ export default function AllBlogsPage() {
         setBlogs(data);
       } catch (error: any) {
         setError(error.message);
-      } finally {
-        setLoading(false);
       }
     };
 
@@ -146,21 +144,23 @@ export default function AllBlogsPage() {
       accessorKey: "title",
       header: "Title",
       cell: ({ row }) => (
-        <div className="font-medium">{row.getValue("title")}</div>
+        <div className="font-medium capitalize">{row.getValue("title")}</div>
       ),
     },
     {
       accessorKey: "category",
       header: "Category",
       cell: ({ row }) => (
-        <div className="font-medium">{row.getValue("category")}</div>
+        <div className="font-medium capitalize">{row.getValue("category")}</div>
       ),
     },
     {
       accessorKey: "authorName",
       header: "Author",
       cell: ({ row }) => (
-        <div className="font-medium">{row.getValue("authorName")}</div>
+        <div className="font-medium capitalize">
+          {row.getValue("authorName")}
+        </div>
       ),
     },
     {
@@ -253,9 +253,9 @@ export default function AllBlogsPage() {
     },
   });
 
-  if (loading) {
-    return <div className="text-center py-4">Loading...</div>;
-  }
+  // if (loading) {
+  //   return <div className="text-center py-4">Loading...</div>;
+  // }
 
   if (error) {
     return <div className="text-center py-4 text-red-500">{error}</div>;
@@ -263,6 +263,7 @@ export default function AllBlogsPage() {
 
   return (
     <div className="w-full">
+      <DashboardSectionTitle title="Blogs" />
       <div className="flex items-center py-4">
         <Input
           placeholder="Filter blogs by title..."

@@ -200,7 +200,7 @@ export default function DashboardProjectUpdatePage() {
     <Fragment>
       <div className="border-2 border-red-500">
         {/* section title */}
-        <DashboardSectionTitle title="Create Project" />
+        <DashboardSectionTitle title="Update Project" />
         <form onSubmit={handleSubmit} className="mt-10">
           <div className="space-y-4">
             <div className="flex gap-5">

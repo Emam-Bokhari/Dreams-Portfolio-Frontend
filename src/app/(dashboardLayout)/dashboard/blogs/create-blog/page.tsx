@@ -94,12 +94,12 @@ export default function CreateBlogPage() {
 
   return (
     <Fragment>
-      <div className="border-2 border-red-500">
+      <div>
         {/* section title */}
         <DashboardSectionTitle title="Create Blog" />
         <form onSubmit={handleSubmit} className="mt-10">
           <div className="space-y-4">
-            <div className="flex gap-5">
+            <div className="flex flex-col xl:flex-row gap-5">
               {/* title */}
               <div className="space-y-2 flex-1">
                 <Label htmlFor="title">
@@ -131,7 +131,7 @@ export default function CreateBlogPage() {
               </div>
             </div>
 
-            <div className="flex gap-5">
+            <div className="flex flex-col xl:flex-row gap-5">
               {/* category */}
               <div className="space-y-2 flex-1">
                 <Label htmlFor="category">
@@ -163,7 +163,7 @@ export default function CreateBlogPage() {
             </div>
 
             {/* introduction */}
-            <div className="space-y-2 flex-1">
+            <div className="space-y-2">
               <Label htmlFor="introduction">
                 Introduction:<span className="text-red-500 ml-1">*</span>
               </Label>
@@ -177,7 +177,7 @@ export default function CreateBlogPage() {
             </div>
 
             {/* mainContent */}
-            <div className="space-y-2 flex-1">
+            <div className="space-y-2">
               <Label htmlFor="mainContent">
                 Main Content:
                 <span className="text-red-500 ml-1">*</span>

@@ -40,10 +40,10 @@ import Image from "next/image";
 import { TContact } from "@/types/contact";
 import Link from "next/link";
 import { toast } from "sonner";
+import DashboardSectionTitle from "@/components/dashboard/shared/DashboardSectionTitle";
 
 export default function AllContactsPage() {
   const [contacts, setContacts] = React.useState<TContact[]>([]);
-  const [loading, setLoading] = React.useState<boolean>(true);
   const [error, setError] = React.useState<string | null>(null);
 
   // Table states
@@ -70,14 +70,11 @@ export default function AllContactsPage() {
         setContacts(data);
       } catch (error: any) {
         setError(error.message);
-      } finally {
-        setLoading(false);
       }
     };
 
     fetchProjects();
   }, []);
-  console.log(contacts);
 
   // delete contact
   async function handleDeleteContact(id: string) {
@@ -119,7 +116,7 @@ export default function AllContactsPage() {
       accessorKey: "name",
       header: "User Name",
       cell: ({ row }) => (
-        <div className="font-medium">{row.getValue("name")}</div>
+        <div className="font-medium capitalize">{row.getValue("name")}</div>
       ),
     },
     {
@@ -203,16 +200,13 @@ export default function AllContactsPage() {
     },
   });
 
-  if (loading) {
-    return <div className="text-center py-4">Loading...</div>;
-  }
-
   if (error) {
     return <div className="text-center py-4 text-red-500">{error}</div>;
   }
 
   return (
     <div className="w-full">
+      <DashboardSectionTitle title="Contacts" />
       <div className="flex items-center py-4">
         <Input
           placeholder="Filter contacts by email..."

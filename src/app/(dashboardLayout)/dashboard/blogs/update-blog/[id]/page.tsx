@@ -120,7 +120,7 @@ export default function DashboardUpdateBlogPage() {
 
   return (
     <Fragment>
-      <div className="border-2 border-red-500">
+      <div>
         {/* section title */}
         <DashboardSectionTitle title="Update Blog" />
         <form onSubmit={handleSubmit} className="mt-10">

@@ -156,13 +156,13 @@ export default function CreateProjectPage() {
 
   return (
     <Fragment>
-      <div className="border-2 border-red-500">
+      <div>
         {/* section title */}
         <DashboardSectionTitle title="Create Project" />
         {/* form */}
         <form onSubmit={handleSubmit} className="mt-10">
           <div className="space-y-4">
-            <div className="flex gap-5">
+            <div className="flex flex-col xl:flex-row gap-5">
               {/* title */}
               <div className="space-y-2 flex-1">
                 <Label htmlFor="title">
@@ -194,7 +194,7 @@ export default function CreateProjectPage() {
               </div>
             </div>
 
-            <div className="flex gap-5">
+            <div className="flex flex-col xl:flex-row gap-5">
               {/* project timeline */}
               <div className="space-y-2 flex-1">
                 <label htmlFor="projectTimeline" className="block font-medium">
@@ -311,7 +311,7 @@ export default function CreateProjectPage() {
               />
             </div>
 
-            <div className="flex gap-5">
+            <div className="flex flex-col xl:flex-row gap-5">
               {/* liveLink */}
               <div className="space-y-2 flex-1">
                 <Label htmlFor="liveLink">
@@ -344,7 +344,7 @@ export default function CreateProjectPage() {
               </div>
             </div>
 
-            <div className="flex gap-5">
+            <div className="flex flex-col xl:flex-row gap-5">
               {/* backendSourceCode */}
               <div className="space-y-2 flex-1">
                 <Label htmlFor="backendSourceCode">Backend Source Code:</Label>
