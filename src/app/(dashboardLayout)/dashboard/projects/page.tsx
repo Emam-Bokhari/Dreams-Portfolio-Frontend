@@ -38,6 +38,7 @@ import {
 } from "@/components/ui/table";
 import Image from "next/image";
 import { TProject } from "@/types/project";
+import Link from "next/link";
 
 export default function AllProjectsPage() {
   const [projects, setProjects] = React.useState<TProject[]>([]);
@@ -155,6 +156,7 @@ export default function AllProjectsPage() {
       enableHiding: false,
       cell: ({ row }) => {
         const project = row.original;
+        // console.log(project, "original");
         return (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -179,7 +181,12 @@ export default function AllProjectsPage() {
               <DropdownMenuSeparator />
 
               <DropdownMenuItem>
-                <FaEye className="mr-2 text-green-600" /> View Details
+                <Link
+                  href={`/dashboard/projects/project-details/${project?._id}`}
+                  className="flex gap-2"
+                >
+                  <FaEye className="mr-2 text-green-600" /> View Details
+                </Link>
               </DropdownMenuItem>
 
               <DropdownMenuItem>
