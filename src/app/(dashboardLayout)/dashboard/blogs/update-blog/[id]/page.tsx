@@ -6,11 +6,13 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Pencil } from "lucide-react";
-import { useRouter } from "next/navigation";
-import { Fragment, useState } from "react";
+import { useParams, useRouter } from "next/navigation";
+import { Fragment, useEffect, useState } from "react";
 import { toast } from "sonner";
 
-export default function CreateBlogPage() {
+export default function DashboardUpdateBlogPage() {
+  const { id } = useParams();
+  console.log(id);
   const router = useRouter();
   const [formData, setFormData] = useState({
     title: "",
@@ -21,6 +23,33 @@ export default function CreateBlogPage() {
     authorName: "",
     tags: [] as string[],
   });
+
+  useEffect(() => {
+    if (id) {
+      fetch(`http://localhost:5000/api/v1/blogs/${id}`)
+        .then((response) => {
+          if (!response.ok) {
+            toast.error("Failed to fetch blogs= data");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          setFormData({
+            title: data?.data?.title,
+            thumbnail: data?.data?.thumbnail,
+            category: data?.data?.category,
+            introduction: data?.data?.introduction,
+            mainContent: data?.data?.mainContent,
+            authorName: data?.data?.authorName,
+            tags: data?.data?.tags,
+          });
+        })
+        .catch((error) => {
+          console.log(error);
+          toast.error("Something went wrong!");
+        });
+    }
+  }, [id]);
 
   function handleChange(
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -47,8 +76,8 @@ export default function CreateBlogPage() {
     console.log(formData, "Form data");
 
     try {
-      const response = await fetch("http://localhost:5000/api/v1/blogs", {
-        method: "POST",
+      const response = await fetch(`http://localhost:5000/api/v1/blogs/${id}`, {
+        method: "PATCH",
         headers: {
           "Content-Type": "application/json",
         },
@@ -56,23 +85,22 @@ export default function CreateBlogPage() {
       });
 
       if (!response.ok) {
-        toast.error("Failed to create blog");
+        toast.error("Failed to update blog");
         return;
       }
 
       const data = await response.json();
-      console.log(data);
 
       if (data?.success) {
-        toast.success("Blog Created successfully", {
+        toast.success("BLog updated successfully", {
           duration: 2000,
         });
         router.push("/dashboard/blogs");
       } else {
-        toast.error("Failed to create blog");
+        toast.error("Failed to update blog");
       }
 
-      // reset field
+      //   reset form
       setFormData({
         title: "",
         thumbnail: "",
@@ -82,8 +110,6 @@ export default function CreateBlogPage() {
         authorName: "",
         tags: [] as string[],
       });
-
-      // reset field
     } catch (err: any) {
       // console.log(err);
       if (err) {
@@ -96,7 +122,7 @@ export default function CreateBlogPage() {
     <Fragment>
       <div className="border-2 border-red-500">
         {/* section title */}
-        <DashboardSectionTitle title="Create Blog" />
+        <DashboardSectionTitle title="Update Blog" />
         <form onSubmit={handleSubmit} className="mt-10">
           <div className="space-y-4">
             <div className="flex gap-5">
@@ -109,7 +135,7 @@ export default function CreateBlogPage() {
                   required
                   placeholder="Enter blog title"
                   name="title"
-                  value={formData.title}
+                  value={formData?.title || ""}
                   onChange={handleChange}
                 />
               </div>
@@ -125,7 +151,7 @@ export default function CreateBlogPage() {
                   required
                   placeholder="Enter thumbnail image url"
                   name="thumbnail"
-                  value={formData.thumbnail}
+                  value={formData?.thumbnail || ""}
                   onChange={handleChange}
                 />
               </div>
@@ -141,7 +167,7 @@ export default function CreateBlogPage() {
                   required
                   placeholder="Enter blog category"
                   name="category"
-                  value={formData.category}
+                  value={formData?.category || ""}
                   onChange={handleChange}
                 />
               </div>
@@ -156,7 +182,7 @@ export default function CreateBlogPage() {
                   required
                   placeholder="Enter author name"
                   name="authorName"
-                  value={formData.authorName}
+                  value={formData?.authorName || ""}
                   onChange={handleChange}
                 />
               </div>
@@ -171,7 +197,7 @@ export default function CreateBlogPage() {
                 required
                 placeholder="Enter blog introduction"
                 name="introduction"
-                value={formData.introduction}
+                value={formData?.introduction || ""}
                 onChange={handleChange}
               />
             </div>
@@ -186,7 +212,7 @@ export default function CreateBlogPage() {
                 required
                 placeholder="Enter blog main content"
                 name="mainContent"
-                value={formData.mainContent}
+                value={formData?.mainContent || ""}
                 onChange={handleChange}
                 className="min-h-36"
               />
@@ -198,7 +224,7 @@ export default function CreateBlogPage() {
               <Textarea
                 placeholder="Enter tags, separated by commas (e.g., React, Technology, Anguler)"
                 name="tags"
-                value={formData?.tags}
+                value={formData?.tags || []}
                 onChange={handleChange}
                 className="min-h-20"
               />
@@ -211,7 +237,7 @@ export default function CreateBlogPage() {
                 className="bg-[#8750F7] text-white hover:bg-[#733DD6] "
               >
                 <Pencil size={18} />
-                Create Blog
+                Update Blog
               </Button>
             </div>
           </div>

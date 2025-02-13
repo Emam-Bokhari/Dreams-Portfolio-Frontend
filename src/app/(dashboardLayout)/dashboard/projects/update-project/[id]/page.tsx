@@ -345,7 +345,7 @@ export default function DashboardProjectUpdatePage() {
               <Textarea
                 placeholder="Enter keyFeatures, separated by commas (e.g., Responsive design, User authentication, API integration)"
                 name="keyFeatures"
-                value={formData?.keyFeatures || ""}
+                value={formData?.keyFeatures || []}
                 onChange={handleChange}
                 className="min-h-20"
                 required

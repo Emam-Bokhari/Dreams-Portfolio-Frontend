@@ -206,7 +206,12 @@ export default function AllBlogsPage() {
               </DropdownMenuItem>
 
               <DropdownMenuItem>
-                <FaEdit className="mr-2 text-amber-500" /> Edit
+                <Link
+                  href={`/dashboard/blogs/update-blog/${blog?._id}`}
+                  className="flex gap-2"
+                >
+                  <FaEdit className="mr-2 text-amber-500" /> Edit
+                </Link>
               </DropdownMenuItem>
 
               <DropdownMenuItem
