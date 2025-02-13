@@ -5,7 +5,7 @@ import SkillCard from "./SkillCard";
 
 export default function Skills() {
   return (
-    <div className="border-2 border-green-500 mt-10">
+    <div className=" mt-10">
       {/* Section Title */}
       <SectionTitle title="My Skills & Tools" />
 

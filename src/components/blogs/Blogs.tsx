@@ -27,7 +27,7 @@ export default function Blogs({ blogs }: BlogsProps) {
   return (
     <Fragment>
       <SectionTitle title="Blogs" />
-      <div className="mt-10 border-2 border-red-500">
+      <div className="mt-10 ">
         <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-5">
           {blogs?.map((blog) => (
             <Card

@@ -36,7 +36,7 @@ export default function BlogDetails({ blog }: BlogProps) {
 
   return (
     <Fragment>
-      <div className="mt-10 border-2 border-red-500 space-y-4">
+      <div className="mt-10  space-y-4">
         {/*  Image */}
         <div className="h-[600px]">
           {isValidUrl(blog?.thumbnail) ? (

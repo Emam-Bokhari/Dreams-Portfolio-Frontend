@@ -32,7 +32,7 @@ export default function FeaturedProject({
 
   return (
     <Fragment>
-      <div className="border-2 border-orange-500 mt-10">
+      <div className="mt-10">
         <SectionTitle title="Featured Project" />
         {/* card */}
         <section className="mt-10">

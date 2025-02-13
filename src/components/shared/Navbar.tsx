@@ -42,7 +42,7 @@ export default function Navbar({
 }) {
   // console.log(session);
   return (
-    <nav className="flex items-center justify-between p-4 border-2 border-red-500 text-[#110E18] dark:text-white  lg:max-w-screen-2xl mx-auto">
+    <nav className="flex items-center justify-between p-4  text-[#110E18] dark:text-white  lg:max-w-screen-2xl mx-auto">
       {/*  Logo */}
       <div className="text-xl font-bold">
         <Link href="/">
