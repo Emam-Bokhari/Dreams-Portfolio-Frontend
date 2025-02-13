@@ -39,6 +39,7 @@ import {
 import Image from "next/image";
 import { TBlog } from "@/types/blog";
 import moment from "moment-timezone";
+import Link from "next/link";
 
 export default function AllBlogsPage() {
   const [blogs, setBlogs] = React.useState<TBlog[]>([]);
@@ -147,6 +148,7 @@ export default function AllBlogsPage() {
       id: "actions",
       enableHiding: false,
       cell: ({ row }) => {
+        const blog = row.original;
         return (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -162,7 +164,12 @@ export default function AllBlogsPage() {
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuItem>
-                <FaEye className="mr-2 text-green-600" /> View Details
+                <Link
+                  href={`/dashboard/blogs/blog-details/${blog?._id}`}
+                  className="flex gap-2"
+                >
+                  <FaEye className="mr-2 text-green-600" /> View Details
+                </Link>
               </DropdownMenuItem>
 
               <DropdownMenuItem>

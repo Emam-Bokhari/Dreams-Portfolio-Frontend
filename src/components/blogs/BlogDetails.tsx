@@ -37,7 +37,6 @@ export default function BlogDetails({ blog }: BlogProps) {
 
   return (
     <Fragment>
-      <SectionTitle title="Blog Details" />
       <div className="mt-10 border-2 border-red-500 space-y-4">
         {/*  Image */}
         <div className="h-[600px]">
