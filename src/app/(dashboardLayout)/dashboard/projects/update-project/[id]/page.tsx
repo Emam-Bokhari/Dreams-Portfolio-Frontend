@@ -14,13 +14,15 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { FilePlus, Send } from "lucide-react";
-import { useRouter } from "next/navigation";
-import React, { Fragment, useState } from "react";
+import { useParams, useRouter } from "next/navigation";
+import React, { Fragment, useEffect, useState } from "react";
+import { FaPen } from "react-icons/fa";
 import { toast } from "sonner";
 
-export default function CreateProjectPage() {
+export default function DashboardProjectUpdatePage() {
+  const { id } = useParams();
   const router = useRouter();
+
   const [formData, setFormData] = useState({
     title: "",
     thumbnail: "",
@@ -39,6 +41,42 @@ export default function CreateProjectPage() {
     securityConsiderations: "",
     projectTimeline: "",
   });
+
+  useEffect(() => {
+    if (id) {
+      fetch(`http://localhost:5000/api/v1/projects/${id}`)
+        .then((response) => {
+          if (!response.ok) {
+            toast.error("Failed to fetch project data");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          setFormData({
+            title: data?.data?.title,
+            thumbnail: data?.data?.thumbnail,
+            description: data?.data?.description,
+            projectRole: data?.data?.projectRole,
+            technologiesUsed: data?.data?.technologiesUsed,
+            challengesFaced: data?.data?.challengesFaced,
+            solution: data?.data?.solution,
+            keyFeatures: data?.data?.keyFeatures,
+            liveLink: data?.data?.liveLink,
+            frontendSourceCode: data?.data?.frontendSourceCode,
+            backendSourceCode: data?.data?.backendSourceCode,
+            apiDocumentation: data?.data?.apiDocumentation,
+            projectGoals: data?.data?.projectGoals,
+            futureImprovements: data?.data?.futureImprovements,
+            securityConsiderations: data?.data?.securityConsiderations,
+            projectTimeline: data?.data?.projectTimeline,
+          });
+        })
+        .catch((error) => {
+          console.log(error);
+          toast.error("Something went wrong!");
+        });
+    }
+  }, [id]);
 
   const roles = [
     { value: "frontend", label: "Frontend Developer" },
@@ -91,6 +129,7 @@ export default function CreateProjectPage() {
     }
   }
 
+  //   role change
   const handleProjectRoleChange = (value: string) => {
     setFormData({
       ...formData,
@@ -103,31 +142,34 @@ export default function CreateProjectPage() {
     console.log(formData, "Form data");
 
     try {
-      const response = await fetch("http://localhost:5000/api/v1/projects", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        `http://localhost:5000/api/v1/projects/${id}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
       if (!response.ok) {
-        toast.error("Failed to create project");
+        toast.error("Failed to update project");
         return;
       }
 
       const data = await response.json();
 
       if (data?.success) {
-        toast.success("Project Created successfully", {
+        toast.success("Project updated successfully", {
           duration: 2000,
         });
         router.push("/dashboard/projects");
       } else {
-        toast.error("Failed to create project");
+        toast.error("Failed to update project");
       }
 
-      // reset field
+      //   reset form
       setFormData({
         title: "",
         thumbnail: "",
@@ -159,7 +201,6 @@ export default function CreateProjectPage() {
       <div className="border-2 border-red-500">
         {/* section title */}
         <DashboardSectionTitle title="Create Project" />
-        {/* form */}
         <form onSubmit={handleSubmit} className="mt-10">
           <div className="space-y-4">
             <div className="flex gap-5">
@@ -172,7 +213,7 @@ export default function CreateProjectPage() {
                   required
                   placeholder="Enter project title"
                   name="title"
-                  value={formData.title}
+                  value={formData?.title || ""}
                   onChange={handleChange}
                 />
               </div>
@@ -188,7 +229,7 @@ export default function CreateProjectPage() {
                   required
                   placeholder="Enter thumbnail image url"
                   name="thumbnail"
-                  value={formData.thumbnail}
+                  value={formData?.thumbnail || ""}
                   onChange={handleChange}
                 />
               </div>
@@ -204,7 +245,7 @@ export default function CreateProjectPage() {
                   required
                   placeholder="Enter project timeline (e.g, Completed in 25days)"
                   name="projectTimeline"
-                  value={formData.projectTimeline}
+                  value={formData?.projectTimeline || ""}
                   onChange={handleChange}
                 />
               </div>
@@ -241,7 +282,7 @@ export default function CreateProjectPage() {
                 required
                 placeholder="Enter project description"
                 name="description"
-                value={formData.description}
+                value={formData?.description || ""}
                 onChange={handleChange}
                 className="min-h-36"
               />
@@ -255,7 +296,7 @@ export default function CreateProjectPage() {
               <select
                 className="w-full min-h-36"
                 name="technologiesUsed"
-                value={formData.technologiesUsed}
+                value={formData?.technologiesUsed || []}
                 onChange={handleTechnologiesChange}
                 multiple
                 required
@@ -278,7 +319,7 @@ export default function CreateProjectPage() {
               <Textarea
                 placeholder="Enter challenges faced"
                 name="challengesFaced"
-                value={formData.challengesFaced}
+                value={formData?.challengesFaced || ""}
                 onChange={handleChange}
                 className="min-h-36"
               />
@@ -290,7 +331,7 @@ export default function CreateProjectPage() {
               <Textarea
                 placeholder="Enter solution and outcome"
                 name="solution"
-                value={formData.solution}
+                value={formData?.solution || ""}
                 onChange={handleChange}
                 className="min-h-36"
               />
@@ -304,7 +345,7 @@ export default function CreateProjectPage() {
               <Textarea
                 placeholder="Enter keyFeatures, separated by commas (e.g., Responsive design, User authentication, API integration)"
                 name="keyFeatures"
-                value={formData?.keyFeatures}
+                value={formData?.keyFeatures || ""}
                 onChange={handleChange}
                 className="min-h-20"
                 required
@@ -322,7 +363,7 @@ export default function CreateProjectPage() {
                   required
                   placeholder="Enter live url"
                   name="liveLink"
-                  value={formData.liveLink}
+                  value={formData?.liveLink || ""}
                   onChange={handleChange}
                 />
               </div>
@@ -338,7 +379,7 @@ export default function CreateProjectPage() {
                   required
                   placeholder="Enter frontend source code url"
                   name="frontendSourceCode"
-                  value={formData.frontendSourceCode}
+                  value={formData?.frontendSourceCode || ""}
                   onChange={handleChange}
                 />
               </div>
@@ -352,7 +393,7 @@ export default function CreateProjectPage() {
                   type="url"
                   placeholder="Enter backend source code url"
                   name="backendSourceCode"
-                  value={formData.backendSourceCode}
+                  value={formData?.backendSourceCode || ""}
                   onChange={handleChange}
                 />
               </div>
@@ -364,7 +405,7 @@ export default function CreateProjectPage() {
                   type="url"
                   placeholder="Enter api documentation  url"
                   name="apiDocumentation"
-                  value={formData.apiDocumentation}
+                  value={formData?.apiDocumentation || ""}
                   onChange={handleChange}
                 />
               </div>
@@ -376,7 +417,7 @@ export default function CreateProjectPage() {
               <Textarea
                 placeholder="Enter project goals and objectives"
                 name="projectGoals"
-                value={formData.projectGoals}
+                value={formData?.projectGoals || ""}
                 onChange={handleChange}
                 className="min-h-36"
               />
@@ -388,7 +429,7 @@ export default function CreateProjectPage() {
               <Textarea
                 placeholder="Enter  future improvements"
                 name="futureImprovements"
-                value={formData.futureImprovements}
+                value={formData?.futureImprovements || ""}
                 onChange={handleChange}
                 className="min-h-36"
               />
@@ -402,7 +443,7 @@ export default function CreateProjectPage() {
               <Textarea
                 placeholder="Enter security considerations"
                 name="securityConsiderations"
-                value={formData.securityConsiderations}
+                value={formData?.securityConsiderations || ""}
                 onChange={handleChange}
                 className="min-h-36"
               />
@@ -414,8 +455,8 @@ export default function CreateProjectPage() {
                 type="submit"
                 className="bg-[#8750F7] text-white hover:bg-[#733DD6] "
               >
-                <FilePlus size={18} />
-                Create Project
+                <FaPen size={18} />
+                Update Project
               </Button>
             </div>
           </div>

@@ -227,7 +227,12 @@ export default function AllProjectsPage() {
               </DropdownMenuItem>
 
               <DropdownMenuItem>
-                <FaEdit className="mr-2 text-amber-500" /> Edit
+                <Link
+                  href={`/dashboard/projects/update-project/${project?._id}`}
+                  className="flex gap-2"
+                >
+                  <FaEdit className="mr-2 text-amber-500" /> Edit
+                </Link>
               </DropdownMenuItem>
 
               <DropdownMenuItem
