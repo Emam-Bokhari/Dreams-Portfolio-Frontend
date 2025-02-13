@@ -40,6 +40,7 @@ import Image from "next/image";
 import { TBlog } from "@/types/blog";
 import moment from "moment-timezone";
 import Link from "next/link";
+import { toast } from "sonner";
 
 export default function AllBlogsPage() {
   const [blogs, setBlogs] = React.useState<TBlog[]>([]);
@@ -78,6 +79,38 @@ export default function AllBlogsPage() {
     fetchProjects();
   }, []);
   //   console.log(blogs);
+
+  // delete blog
+  async function handleDeleteBlog(id: string) {
+    // Optimistic UI Update: Delete locally first
+    const updatedBlogs = blogs.filter((blog) => blog._id !== id);
+    setBlogs(updatedBlogs);
+    try {
+      const response = await fetch(`http://localhost:5000/api/v1/blogs/${id}`, {
+        method: "DELETE",
+      });
+
+      if (!response.ok) {
+        toast.error("Failed to delete blog!");
+        return;
+      }
+
+      const data = await response.json();
+
+      if (data?.success) {
+        toast.success("Blog deleted successfully!", {
+          duration: 2000,
+        });
+      } else {
+        toast.error("Failed to delete blog");
+      }
+    } catch (error) {
+      console.error("Error deleting blog:", error);
+      toast.error("Something went wrong!");
+      // Rollback in case of error
+      setBlogs([...blogs]);
+    }
+  }
 
   const columns: ColumnDef<TBlog>[] = [
     {
@@ -176,7 +209,10 @@ export default function AllBlogsPage() {
                 <FaEdit className="mr-2 text-amber-500" /> Edit
               </DropdownMenuItem>
 
-              <DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={() => handleDeleteBlog(blog?._id)}
+                className="cursor-pointer"
+              >
                 <FaTrash className="mr-2 text-red-600" />
                 Delete
               </DropdownMenuItem>
