@@ -39,6 +39,7 @@ import {
 import Image from "next/image";
 import { TContact } from "@/types/contact";
 import Link from "next/link";
+import { toast } from "sonner";
 
 export default function AllContactsPage() {
   const [contacts, setContacts] = React.useState<TContact[]>([]);
@@ -77,6 +78,41 @@ export default function AllContactsPage() {
     fetchProjects();
   }, []);
   console.log(contacts);
+
+  // delete contact
+  async function handleDeleteContact(id: string) {
+    // Optimistic UI Update: Delete locally first
+    const updatedContacts = contacts.filter((contact) => contact._id !== id);
+    setContacts(updatedContacts);
+    try {
+      const response = await fetch(
+        `http://localhost:5000/api/v1/contacts/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
+
+      if (!response.ok) {
+        toast.error("Failed to delete contact!");
+        return;
+      }
+
+      const data = await response.json();
+
+      if (data?.success) {
+        toast.success("Contact deleted successfully!", {
+          duration: 2000,
+        });
+      } else {
+        toast.error("Failed to delete contact");
+      }
+    } catch (error) {
+      console.error("Error deleting contact:", error);
+      toast.error("Something went wrong!");
+      // Rollback in case of error
+      setContacts([...contacts]);
+    }
+  }
 
   const columns: ColumnDef<TContact>[] = [
     {
@@ -128,7 +164,10 @@ export default function AllContactsPage() {
                   <FaEye className="mr-2 text-green-600" /> View Details
                 </Link>
               </DropdownMenuItem>
-              <DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={() => handleDeleteContact(contact?._id)}
+                className="cursor-pointer"
+              >
                 <FaTrash className="mr-2 text-red-600" />
                 Delete
               </DropdownMenuItem>

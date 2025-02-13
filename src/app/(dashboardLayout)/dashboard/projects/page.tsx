@@ -39,6 +39,8 @@ import {
 import Image from "next/image";
 import { TProject } from "@/types/project";
 import Link from "next/link";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 export default function AllProjectsPage() {
   const [projects, setProjects] = React.useState<TProject[]>([]);
@@ -77,6 +79,41 @@ export default function AllProjectsPage() {
     fetchProjects();
   }, []);
   console.log(projects);
+
+  // delete project
+  async function handleDeleteProject(id: string) {
+    // Optimistic UI Update: Delete locally first
+    const updatedProjects = projects.filter((project) => project._id !== id);
+    setProjects(updatedProjects);
+    try {
+      const response = await fetch(
+        `http://localhost:5000/api/v1/projects/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
+
+      if (!response.ok) {
+        toast.error("Failed to delete project!");
+        return;
+      }
+
+      const data = await response.json();
+
+      if (data?.success) {
+        toast.success("Project deleted successfully!", {
+          duration: 2000,
+        });
+      } else {
+        toast.error("Failed to delete project");
+      }
+    } catch (error) {
+      console.error("Error deleting project:", error);
+      toast.error("Something went wrong!");
+      // Rollback in case of error
+      setProjects([...projects]);
+    }
+  }
 
   const columns: ColumnDef<TProject>[] = [
     {
@@ -193,7 +230,10 @@ export default function AllProjectsPage() {
                 <FaEdit className="mr-2 text-amber-500" /> Edit
               </DropdownMenuItem>
 
-              <DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={() => handleDeleteProject(project?._id)}
+                className="cursor-pointer"
+              >
                 <FaTrash className="mr-2 text-red-600" />
                 Delete
               </DropdownMenuItem>

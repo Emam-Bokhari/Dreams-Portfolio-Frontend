@@ -6,10 +6,12 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Pencil } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { Fragment, useState } from "react";
 import { toast } from "sonner";
 
 export default function CreateBlogPage() {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     title: "",
     thumbnail: "",
@@ -65,6 +67,7 @@ export default function CreateBlogPage() {
         toast.success("Blog Created successfully", {
           duration: 2000,
         });
+        router.push("/dashboard/blogs");
       } else {
         toast.error("Failed to create blog");
       }
@@ -118,6 +121,7 @@ export default function CreateBlogPage() {
                   <span className="text-red-500 ml-1">*</span>
                 </Label>
                 <Input
+                  type="url"
                   required
                   placeholder="Enter thumbnail image url"
                   name="thumbnail"
@@ -197,7 +201,6 @@ export default function CreateBlogPage() {
                 value={formData?.tags?.join(",")}
                 onChange={handleChange}
                 className="min-h-20"
-                required
               />
             </div>
 

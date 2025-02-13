@@ -15,10 +15,12 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { FilePlus, Send } from "lucide-react";
+import { useRouter } from "next/navigation";
 import React, { Fragment, useState } from "react";
 import { toast } from "sonner";
 
 export default function CreateProjectPage() {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     title: "",
     thumbnail: "",
@@ -118,6 +120,7 @@ export default function CreateProjectPage() {
         toast.success("Project Created successfully", {
           duration: 2000,
         });
+        router.push("/dashboard/projects");
       } else {
         toast.error("Failed to create project");
       }
@@ -178,6 +181,7 @@ export default function CreateProjectPage() {
                   <span className="text-red-500 ml-1">*</span>
                 </Label>
                 <Input
+                  type="url"
                   required
                   placeholder="Enter thumbnail image url"
                   name="thumbnail"
@@ -311,6 +315,7 @@ export default function CreateProjectPage() {
                   Project Live Link:<span className="text-red-500 ml-1">*</span>
                 </Label>
                 <Input
+                  type="url"
                   required
                   placeholder="Enter live url"
                   name="liveLink"
@@ -326,6 +331,7 @@ export default function CreateProjectPage() {
                   <span className="text-red-500 ml-1">*</span>
                 </Label>
                 <Input
+                  type="url"
                   required
                   placeholder="Enter frontend source code url"
                   name="frontendSourceCode"
@@ -340,6 +346,7 @@ export default function CreateProjectPage() {
               <div className="space-y-2 flex-1">
                 <Label htmlFor="backendSourceCode">Backend Source Code:</Label>
                 <Input
+                  type="url"
                   placeholder="Enter backend source code url"
                   name="backendSourceCode"
                   value={formData.backendSourceCode}
@@ -351,6 +358,7 @@ export default function CreateProjectPage() {
               <div className="space-y-2 flex-1">
                 <Label htmlFor="apiDocumentation">Api Documentation:</Label>
                 <Input
+                  type="url"
                   placeholder="Enter api documentation  url"
                   name="apiDocumentation"
                   value={formData.apiDocumentation}
