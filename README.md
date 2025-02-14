@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 Portfolio Frontend
 
-## Getting Started
+Welcome to my personal portfolio website! This project showcases my skills, experience, and projects as a full-stack web developer, built with modern and industry-standard technologies.
 
-First, run the development server:
+## 🌟 Tech Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Framework:** Next.js 15
+- **Styling:** Tailwind CSS, ShadCN UI
+- **Animations:** Lottie React, Framer Motion
+- **Optimization:** Font Optimization, Image Optimization
+- **Deployment:** Vercel
+
+## ✨ Features
+
+- ⚡ **Blazing Fast Performance** – Optimized with Next.js and lazy loading.
+- 🎨 **Modern & Responsive UI** – Styled with Tailwind CSS & ShadCN UI.
+- 🔍 **SEO & Accessibility Optimized** – Ensuring a great user experience.
+- 🖼️ **Optimized Images** – Using Next.js Image component.
+- 🎬 **Smooth Animations** – Leveraging Lottie and Framer Motion.
+
+## 🚀 Getting Started
+
+1. **Clone the repository:**
+
+```sh
+git clone https://github.com/Emam-Bokhari/Dreams-Portfolio-Frontend
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. **Setup Environment Variables**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Create a `.env` file in the root directory and add:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```sh
+NEXT_PUBLIC_BASE_URL=http://localhost:5000/api/v1
+GITHUB_ID=Ov23liTliv6jTQMOSyh9
+GITHUB_SECRET=f5ecaab0806cba579f3cff55187e5e5df241ba54
+GOOGLE_CLIENT_ID=529120922963-le0tuf3r4qaqpj6ak408fdde4erbgmdl.apps.googleusercontent.com
+GOOGLE_CLIENT_SECRET=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
+NEXTAUTH_SECRET=portfolio
+```
 
-## Learn More
+3. **Install dependencies:**
 
-To learn more about Next.js, take a look at the following resources:
+```sh
+npm install
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4. **Run the development server:**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```sh
+npm run dev
+```
 
-## Deploy on Vercel
+5. **Open in browser:**
+   Visit `http://localhost:3000`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🎨 Customization
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Want to personalize this portfolio? Here’s what you can modify:
+
+- Update images and branding assets in `/assets`
+- Adjust UI styles in `Tailwind CSS` and `Shadcn/Ui`
+- Modify content & layout in `src`
+
+## 🎯 Author
+
+Developed with ❤️ by Moshfiqur Rahman (Emam Bokhari).
+
+🚀 Happy Coding! 🎯
+
+```
+
+```
