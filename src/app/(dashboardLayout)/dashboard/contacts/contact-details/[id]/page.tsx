@@ -19,10 +19,10 @@ export default async function DashboardContactDetailsPage({
   }
   const result = await response.json();
   const contact = result?.data || {};
-  console.log(contact);
+  // console.log(contact);
   return (
     <div>
-      {/* dashboard title */}
+      {/*  title */}
       <DashboardSectionTitle title="Contact Details" />
 
       <ContactDetails contact={contact} />
