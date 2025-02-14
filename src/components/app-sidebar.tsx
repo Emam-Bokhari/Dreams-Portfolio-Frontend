@@ -1,5 +1,5 @@
 "use client";
-import { LogOut, Settings } from "lucide-react";
+import { LayoutDashboard, LogOut, Settings } from "lucide-react";
 import logo from "@/assets/Logo.png";
 
 import {
@@ -24,6 +24,15 @@ import { signOut } from "next-auth/react";
 import { usePathname } from "next/navigation";
 
 // menu items
+
+const application = [
+  {
+    title: "Home",
+    url: "/dashboard",
+    icon: LayoutDashboard,
+  },
+];
+
 const project = [
   {
     title: "Create Project",
@@ -87,6 +96,11 @@ export function AppSidebar({
         </Link>
       </SidebarHeader>
       <SidebarContent className="bg-[#140C1C]">
+        <SidebarGroupComponent
+          label="Application"
+          items={application}
+          pathName={pathName}
+        />
         <SidebarGroupComponent
           label="Project"
           items={project}
