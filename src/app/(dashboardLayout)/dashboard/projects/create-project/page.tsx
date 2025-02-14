@@ -164,7 +164,7 @@ export default function CreateProjectPage() {
             <div className="flex flex-col xl:flex-row gap-5">
               {/* title */}
               <div className="space-y-2 flex-1">
-                <Label htmlFor="title">
+                <Label htmlFor="title" className="text-white">
                   Project Title:<span className="text-red-500 ml-1">*</span>
                 </Label>
                 <Input
@@ -173,12 +173,13 @@ export default function CreateProjectPage() {
                   name="title"
                   value={formData.title}
                   onChange={handleChange}
+                  className="border-[#27272A] text-white"
                 />
               </div>
 
               {/* thumbnail */}
               <div className="space-y-2 flex-1">
-                <Label htmlFor="thumbnail">
+                <Label htmlFor="thumbnail" className="text-white">
                   Thumbnail Image Url:
                   <span className="text-red-500 ml-1">*</span>
                 </Label>
@@ -189,6 +190,7 @@ export default function CreateProjectPage() {
                   name="thumbnail"
                   value={formData.thumbnail}
                   onChange={handleChange}
+                  className="border-[#27272A] text-white"
                 />
               </div>
             </div>
@@ -196,7 +198,10 @@ export default function CreateProjectPage() {
             <div className="flex flex-col xl:flex-row gap-5">
               {/* project timeline */}
               <div className="space-y-2 flex-1">
-                <label htmlFor="projectTimeline" className="block font-medium">
+                <label
+                  htmlFor="projectTimeline"
+                  className="block font-medium text-white"
+                >
                   Project Timeline:
                 </label>
                 <Input
@@ -205,17 +210,21 @@ export default function CreateProjectPage() {
                   name="projectTimeline"
                   value={formData.projectTimeline}
                   onChange={handleChange}
+                  className="border-[#27272A] text-white"
                 />
               </div>
 
               {/* project role */}
               <div className="space-y-2 flex-1">
-                <Label htmlFor="projectRole">
+                <Label htmlFor="projectRole" className="text-white">
                   Project Role:<span className="text-red-500 ml-1">*</span>
                 </Label>
                 <Select required onValueChange={handleProjectRoleChange}>
                   <SelectTrigger>
-                    <SelectValue placeholder="Select a Role" />
+                    <SelectValue
+                      placeholder="Select a Role"
+                      className="text-white"
+                    />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectGroup>
@@ -233,7 +242,7 @@ export default function CreateProjectPage() {
 
             {/* description */}
             <div className="space-y-2">
-              <Label htmlFor="description">
+              <Label htmlFor="description" className="text-white">
                 Project Description:<span className="text-red-500 ml-1">*</span>
               </Label>
               <Textarea
@@ -242,17 +251,17 @@ export default function CreateProjectPage() {
                 name="description"
                 value={formData.description}
                 onChange={handleChange}
-                className="min-h-36"
+                className="min-h-36 border-[#27272A] text-white"
               />
             </div>
 
             {/* Technologies Used */}
             <div className="space-y-2">
-              <Label htmlFor="technologiesUsed">
+              <Label htmlFor="technologiesUsed" className="text-white">
                 Technologies Used:<span className="text-red-500 ml-1">*</span>
               </Label>
               <select
-                className="w-full min-h-36"
+                className="w-full min-h-36 "
                 name="technologiesUsed"
                 value={formData.technologiesUsed}
                 onChange={handleTechnologiesChange}
@@ -273,31 +282,35 @@ export default function CreateProjectPage() {
 
             {/* challengesFaced */}
             <div className="space-y-2">
-              <Label htmlFor="challengesFaced">Challenges Faced:</Label>
+              <Label htmlFor="challengesFaced" className="text-white">
+                Challenges Faced:
+              </Label>
               <Textarea
                 placeholder="Enter challenges faced"
                 name="challengesFaced"
                 value={formData.challengesFaced}
                 onChange={handleChange}
-                className="min-h-36"
+                className="min-h-36 border-[#27272A] text-white"
               />
             </div>
 
             {/* solution */}
             <div className="space-y-2">
-              <Label htmlFor="solution">Solution & Outcome:</Label>
+              <Label htmlFor="solution" className="text-white">
+                Solution & Outcome:
+              </Label>
               <Textarea
                 placeholder="Enter solution and outcome"
                 name="solution"
                 value={formData.solution}
                 onChange={handleChange}
-                className="min-h-36"
+                className="min-h-36 border-[#27272A] text-white"
               />
             </div>
 
             {/* keyFeatures (Comma Separated) */}
             <div className="space-y-2">
-              <Label htmlFor="keyFeatures">
+              <Label htmlFor="keyFeatures" className="text-white">
                 Key Features:<span className="text-red-500 ml-1">*</span>
               </Label>
               <Textarea
@@ -305,7 +318,7 @@ export default function CreateProjectPage() {
                 name="keyFeatures"
                 value={formData?.keyFeatures}
                 onChange={handleChange}
-                className="min-h-20"
+                className="min-h-20 border-[#27272A] text-white"
                 required
               />
             </div>
@@ -313,7 +326,7 @@ export default function CreateProjectPage() {
             <div className="flex flex-col xl:flex-row gap-5">
               {/* liveLink */}
               <div className="space-y-2 flex-1">
-                <Label htmlFor="liveLink">
+                <Label htmlFor="liveLink" className="text-white">
                   Project Live Link:<span className="text-red-500 ml-1">*</span>
                 </Label>
                 <Input
@@ -323,12 +336,13 @@ export default function CreateProjectPage() {
                   name="liveLink"
                   value={formData.liveLink}
                   onChange={handleChange}
+                  className="border-[#27272A] text-white"
                 />
               </div>
 
               {/* frontendSourceCode */}
               <div className="space-y-2 flex-1">
-                <Label htmlFor="frontendSourceCode">
+                <Label htmlFor="frontendSourceCode" className="text-white">
                   Frontend Source Code:
                   <span className="text-red-500 ml-1">*</span>
                 </Label>
@@ -339,6 +353,7 @@ export default function CreateProjectPage() {
                   name="frontendSourceCode"
                   value={formData.frontendSourceCode}
                   onChange={handleChange}
+                  className="border-[#27272A] text-white"
                 />
               </div>
             </div>
@@ -346,56 +361,66 @@ export default function CreateProjectPage() {
             <div className="flex flex-col xl:flex-row gap-5">
               {/* backendSourceCode */}
               <div className="space-y-2 flex-1">
-                <Label htmlFor="backendSourceCode">Backend Source Code:</Label>
+                <Label htmlFor="backendSourceCode" className="text-white">
+                  Backend Source Code:
+                </Label>
                 <Input
                   type="url"
                   placeholder="Enter backend source code url"
                   name="backendSourceCode"
                   value={formData.backendSourceCode}
                   onChange={handleChange}
+                  className="border-[#27272A] text-white"
                 />
               </div>
 
               {/* apiDocumentation */}
               <div className="space-y-2 flex-1">
-                <Label htmlFor="apiDocumentation">Api Documentation:</Label>
+                <Label htmlFor="apiDocumentation" className="text-white">
+                  Api Documentation:
+                </Label>
                 <Input
                   type="url"
                   placeholder="Enter api documentation  url"
                   name="apiDocumentation"
                   value={formData.apiDocumentation}
                   onChange={handleChange}
+                  className="border-[#27272A] text-white"
                 />
               </div>
             </div>
 
             {/* projectGoals*/}
             <div className="space-y-2">
-              <Label htmlFor="solution">Project Goals And Objectives:</Label>
+              <Label htmlFor="solution" className="text-white">
+                Project Goals And Objectives:
+              </Label>
               <Textarea
                 placeholder="Enter project goals and objectives"
                 name="projectGoals"
                 value={formData.projectGoals}
                 onChange={handleChange}
-                className="min-h-36"
+                className="min-h-36 border-[#27272A] text-white"
               />
             </div>
 
             {/* futureImprovements*/}
             <div className="space-y-2">
-              <Label htmlFor="futureImprovements">Future Improvements:</Label>
+              <Label htmlFor="futureImprovements" className="text-white">
+                Future Improvements:
+              </Label>
               <Textarea
                 placeholder="Enter  future improvements"
                 name="futureImprovements"
                 value={formData.futureImprovements}
                 onChange={handleChange}
-                className="min-h-36"
+                className="min-h-36 border-[#27272A] text-white"
               />
             </div>
 
             {/* securityConsiderations*/}
             <div className="space-y-2">
-              <Label htmlFor="securityConsiderations">
+              <Label htmlFor="securityConsiderations" className="text-white">
                 Security Considerations:
               </Label>
               <Textarea
@@ -403,7 +428,7 @@ export default function CreateProjectPage() {
                 name="securityConsiderations"
                 value={formData.securityConsiderations}
                 onChange={handleChange}
-                className="min-h-36"
+                className="min-h-36 border-[#27272A] text-white"
               />
             </div>
 
