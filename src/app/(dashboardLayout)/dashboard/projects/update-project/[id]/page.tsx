@@ -43,7 +43,7 @@ export default function DashboardProjectUpdatePage() {
 
   useEffect(() => {
     if (id) {
-      fetch(`http://localhost:5000/api/v1/projects/${id}`)
+      fetch(`https://dreams-portfolio-backend.vercel.app/api/v1/projects/${id}`)
         .then((response) => {
           if (!response.ok) {
             toast.error("Failed to fetch project data");
@@ -142,7 +142,7 @@ export default function DashboardProjectUpdatePage() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/v1/projects/${id}`,
+        `https://dreams-portfolio-backend.vercel.app/api/v1/projects/${id}`,
         {
           method: "PATCH",
           headers: {
@@ -196,7 +196,7 @@ export default function DashboardProjectUpdatePage() {
 
   return (
     <Fragment>
-      <div className="border-2 border-red-500">
+      <div>
         {/* section title */}
         <DashboardSectionTitle title="Update Project" />
         <form onSubmit={handleSubmit} className="mt-10">

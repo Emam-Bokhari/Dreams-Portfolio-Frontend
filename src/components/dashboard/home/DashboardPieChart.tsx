@@ -14,7 +14,9 @@ const DashboardPieChart = () => {
 
   // Fetch data from the backend API
   useEffect(() => {
-    fetch("http://localhost:5000/api/v1/dashboard/overview")
+    fetch(
+      "https://dreams-portfolio-backend.vercel.app/api/v1/dashboard/overview"
+    )
       .then((response) => response.json())
       .then((responseData) => {
         console.log("Fetched Data:", responseData); // Log the response to verify

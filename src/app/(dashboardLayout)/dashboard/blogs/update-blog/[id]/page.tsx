@@ -26,7 +26,7 @@ export default function DashboardUpdateBlogPage() {
 
   useEffect(() => {
     if (id) {
-      fetch(`http://localhost:5000/api/v1/blogs/${id}`)
+      fetch(`https://dreams-portfolio-backend.vercel.app/api/v1/blogs/${id}`)
         .then((response) => {
           if (!response.ok) {
             toast.error("Failed to fetch blogs= data");
@@ -76,13 +76,16 @@ export default function DashboardUpdateBlogPage() {
     console.log(formData, "Form data");
 
     try {
-      const response = await fetch(`http://localhost:5000/api/v1/blogs/${id}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        `https://dreams-portfolio-backend.vercel.app/api/v1/blogs/${id}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
       if (!response.ok) {
         toast.error("Failed to update blog");

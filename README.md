@@ -31,7 +31,7 @@ git clone https://github.com/Emam-Bokhari/Dreams-Portfolio-Frontend
 Create a `.env` file in the root directory and add:
 
 ```sh
-NEXT_PUBLIC_BASE_URL=http://localhost:5000/api/v1
+NEXT_PUBLIC_BASE_URL=https://dreams-portfolio-backend.vercel.app/api/v1
 GITHUB_ID=Ov23liTliv6jTQMOSyh9
 GITHUB_SECRET=f5ecaab0806cba579f3cff55187e5e5df241ba54
 GOOGLE_CLIENT_ID=529120922963-le0tuf3r4qaqpj6ak408fdde4erbgmdl.apps.googleusercontent.com

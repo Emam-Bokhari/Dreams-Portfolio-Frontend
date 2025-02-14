@@ -83,7 +83,7 @@ export default function ProjectTable() {
     setProjects(updatedProjects);
     try {
       const response = await fetch(
-        `http://localhost:5000/api/v1/projects/${id}`,
+        `https://dreams-portfolio-backend.vercel.app/api/v1/projects/${id}`,
         {
           method: "DELETE",
         }

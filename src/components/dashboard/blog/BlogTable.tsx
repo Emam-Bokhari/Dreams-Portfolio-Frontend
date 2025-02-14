@@ -81,9 +81,12 @@ export default function BlogTable() {
     const updatedBlogs = blogs.filter((blog) => blog._id !== id);
     setBlogs(updatedBlogs);
     try {
-      const response = await fetch(`http://localhost:5000/api/v1/blogs/${id}`, {
-        method: "DELETE",
-      });
+      const response = await fetch(
+        `https://dreams-portfolio-backend.vercel.app/api/v1/blogs/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
 
       if (!response.ok) {
         toast.error("Failed to delete blog!");
