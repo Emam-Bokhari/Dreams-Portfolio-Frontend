@@ -1,6 +1,4 @@
-// "use client";
-
-import Link from "next/link";
+"use client";
 
 export default function NotFound() {
   return (
@@ -14,12 +12,6 @@ export default function NotFound() {
           It seems like the URL is either incorrect or the page has been
           removed.
         </p>
-        <Link
-          href="/"
-          className="px-6 py-3 bg-[#8750F7] hover:bg-[#733DD6] text-white text-xl rounded-md transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#8750F7] focus:ring-offset-2"
-        >
-          Go Back to Home
-        </Link>
       </div>
     </div>
   );
