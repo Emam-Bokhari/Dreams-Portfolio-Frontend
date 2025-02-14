@@ -128,7 +128,7 @@ export default function DashboardUpdateBlogPage() {
             <div className="flex gap-5">
               {/* title */}
               <div className="space-y-2 flex-1">
-                <Label htmlFor="title">
+                <Label htmlFor="title" className="text-white">
                   Title:<span className="text-red-500 ml-1">*</span>
                 </Label>
                 <Input
@@ -137,12 +137,13 @@ export default function DashboardUpdateBlogPage() {
                   name="title"
                   value={formData?.title || ""}
                   onChange={handleChange}
+                  className="border-[#27272A] text-white"
                 />
               </div>
 
               {/* thumbnail */}
               <div className="space-y-2 flex-1">
-                <Label htmlFor="thumbnail">
+                <Label htmlFor="thumbnail" className="text-white">
                   Thumbnail Image Url:
                   <span className="text-red-500 ml-1">*</span>
                 </Label>
@@ -153,6 +154,7 @@ export default function DashboardUpdateBlogPage() {
                   name="thumbnail"
                   value={formData?.thumbnail || ""}
                   onChange={handleChange}
+                  className="border-[#27272A] text-white"
                 />
               </div>
             </div>
@@ -160,7 +162,7 @@ export default function DashboardUpdateBlogPage() {
             <div className="flex gap-5">
               {/* category */}
               <div className="space-y-2 flex-1">
-                <Label htmlFor="category">
+                <Label htmlFor="category" className="text-white">
                   Category:<span className="text-red-500 ml-1">*</span>
                 </Label>
                 <Input
@@ -169,12 +171,13 @@ export default function DashboardUpdateBlogPage() {
                   name="category"
                   value={formData?.category || ""}
                   onChange={handleChange}
+                  className="border-[#27272A] text-white"
                 />
               </div>
 
               {/* author name */}
               <div className="space-y-2 flex-1">
-                <Label htmlFor="authorName">
+                <Label htmlFor="authorName" className="text-white">
                   Author Name:
                   <span className="text-red-500 ml-1">*</span>
                 </Label>
@@ -184,13 +187,14 @@ export default function DashboardUpdateBlogPage() {
                   name="authorName"
                   value={formData?.authorName || ""}
                   onChange={handleChange}
+                  className="border-[#27272A] text-white"
                 />
               </div>
             </div>
 
             {/* introduction */}
             <div className="space-y-2 flex-1">
-              <Label htmlFor="introduction">
+              <Label htmlFor="introduction" className="text-white">
                 Introduction:<span className="text-red-500 ml-1">*</span>
               </Label>
               <Input
@@ -199,12 +203,13 @@ export default function DashboardUpdateBlogPage() {
                 name="introduction"
                 value={formData?.introduction || ""}
                 onChange={handleChange}
+                className="border-[#27272A] text-white"
               />
             </div>
 
             {/* mainContent */}
             <div className="space-y-2 flex-1">
-              <Label htmlFor="mainContent">
+              <Label htmlFor="mainContent" className="text-white">
                 Main Content:
                 <span className="text-red-500 ml-1">*</span>
               </Label>
@@ -214,19 +219,21 @@ export default function DashboardUpdateBlogPage() {
                 name="mainContent"
                 value={formData?.mainContent || ""}
                 onChange={handleChange}
-                className="min-h-36"
+                className="min-h-36 border-[#27272A] text-white"
               />
             </div>
 
             {/* tags */}
             <div className="space-y-2">
-              <Label htmlFor="tags">Tags:</Label>
+              <Label htmlFor="tags" className="text-white">
+                Tags:
+              </Label>
               <Textarea
                 placeholder="Enter tags, separated by commas (e.g., React, Technology, Anguler)"
                 name="tags"
                 value={formData?.tags || []}
                 onChange={handleChange}
-                className="min-h-20"
+                className="min-h-20 border-[#27272A] text-white"
               />
             </div>
 
