@@ -4,9 +4,9 @@ import Image from "next/image";
 import DhakaTime from "@/lib/DhakaTime";
 import CurrentDate from "@/lib/CurrrentDate";
 import Greeting from "@/lib/Gretting";
-import ContactTable from "@/components/dashboard/contact/ContactTable";
-import ProjectTable from "@/components/dashboard/project/ProjectTable";
-import DashboardPieChart from "@/components/dashboard/home/DashboardPieChart";
+import ContactTable from "@/components/dashboard/DashboardContactComponent/ContactTable";
+import ProjectTable from "@/components/dashboard/DashboardProjectComponent/ProjectTable";
+import DashboardPieChart from "@/components/dashboard/DashboardHomeComponent/DashboardPieChart";
 
 export default function DashboardHomePage() {
   return (

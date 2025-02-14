@@ -1,4 +1,4 @@
-import BlogTable from "@/components/dashboard/blog/BlogTable";
+import BlogTable from "@/components/dashboard/DashboardBlogComponent/BlogTable";
 import DashboardSectionTitle from "@/components/dashboard/shared/DashboardSectionTitle";
 
 export default function AllBlogsPage() {

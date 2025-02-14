@@ -1,7 +1,7 @@
-import Banner from "@/components/home/Banner";
-import FeaturedProject from "@/components/home/FeaturedProject";
-import { Pattern } from "@/components/home/Pattern";
-import Skills from "@/components/home/Skills";
+import Banner from "@/components/homeComponent/Banner";
+import FeaturedProject from "@/components/homeComponent/FeaturedProject";
+import { Pattern } from "@/components/homeComponent/Pattern";
+import Skills from "@/components/homeComponent/Skills";
 
 export default async function HomePage() {
   const response = await fetch(

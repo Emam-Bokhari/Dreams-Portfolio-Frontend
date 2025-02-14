@@ -1,4 +1,4 @@
-import ContactDetails from "@/components/contact/ContactDetails";
+import ContactDetails from "@/components/contactComponent/ContactDetails";
 import DashboardSectionTitle from "@/components/dashboard/shared/DashboardSectionTitle";
 
 export default async function DashboardContactDetailsPage({

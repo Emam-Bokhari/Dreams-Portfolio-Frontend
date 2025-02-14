@@ -1,4 +1,4 @@
-import ContactTable from "@/components/dashboard/contact/ContactTable";
+import ContactTable from "@/components/dashboard/DashboardContactComponent/ContactTable";
 import DashboardSectionTitle from "@/components/dashboard/shared/DashboardSectionTitle";
 
 export default function AllContactsPage() {

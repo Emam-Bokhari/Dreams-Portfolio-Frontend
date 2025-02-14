@@ -1,4 +1,4 @@
-import Projects from "@/components/projects/projects";
+import Projects from "@/components/projectsComponent/projects";
 
 export default async function ProjectsPage() {
   const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/projects`, {

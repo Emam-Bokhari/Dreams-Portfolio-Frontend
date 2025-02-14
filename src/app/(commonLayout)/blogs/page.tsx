@@ -1,4 +1,4 @@
-import Blogs from "@/components/blogs/Blogs";
+import Blogs from "@/components/blogsComponent/Blogs";
 import { Fragment } from "react";
 
 export default async function BlogsPage() {

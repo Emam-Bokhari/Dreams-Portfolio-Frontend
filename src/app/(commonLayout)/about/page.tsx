@@ -1,4 +1,4 @@
-import About from "@/components/about/About";
+import About from "@/components/aboutComponent/About";
 import { Fragment } from "react";
 
 export default function AboutPage() {

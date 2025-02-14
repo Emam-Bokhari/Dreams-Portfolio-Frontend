@@ -1,4 +1,4 @@
-import BlogDetails from "@/components/blogs/BlogDetails";
+import BlogDetails from "@/components/blogsComponent/BlogDetails";
 import DashboardSectionTitle from "@/components/dashboard/shared/DashboardSectionTitle";
 
 export default async function DashboardBlogDetailsPage({
