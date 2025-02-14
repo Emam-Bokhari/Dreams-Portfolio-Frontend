@@ -2,8 +2,6 @@ import { Fragment } from "react";
 import TechAnimation from "./TechAnimation";
 import FindWithMe from "./FindWithMe";
 import BestSkillsOn from "./BestSkillsOn";
-import { Button } from "../ui/button";
-import { Download } from "lucide-react";
 import ResumeDownloadButton from "./ResumeDownloadButton";
 
 export default function Banner() {
