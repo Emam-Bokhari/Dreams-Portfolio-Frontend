@@ -10,7 +10,7 @@ type CommonLayoutProps = {
 
 export default async function CommonLayout({ children }: CommonLayoutProps) {
   const session = await getServerSession(authOptions);
-  // console.log(session);
+
   return (
     <Fragment>
       <Navbar session={session} />

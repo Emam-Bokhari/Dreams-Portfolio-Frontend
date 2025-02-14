@@ -10,7 +10,6 @@ export default async function ProjectsPage() {
   const result = await response.json();
   const projects = result?.data || [];
 
-  // console.log(projects);
   return (
     <div className="lg:max-w-screen-2xl p-4 mx-auto ">
       <Projects projects={projects} />

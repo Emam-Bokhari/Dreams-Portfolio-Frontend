@@ -9,7 +9,7 @@ export default async function DashboardLayout({
   children: React.ReactNode;
 }) {
   const session = await getServerSession(authOptions);
-  // console.log(session);
+
   return (
     <SidebarProvider>
       <div className="flex h-screen w-full">

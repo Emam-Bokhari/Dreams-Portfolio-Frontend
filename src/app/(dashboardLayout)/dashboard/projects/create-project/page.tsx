@@ -14,7 +14,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { FilePlus, Send } from "lucide-react";
+import { FilePlus } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React, { Fragment, useState } from "react";
 import { toast } from "sonner";
@@ -147,7 +147,6 @@ export default function CreateProjectPage() {
         projectTimeline: "",
       });
     } catch (err: any) {
-      // console.log(err);
       if (err) {
         toast.error("Something went wrong!");
       }

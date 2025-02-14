@@ -15,7 +15,7 @@ export default function ErrorPage({
         </h2>
         <p className="text-[#989BA4] text-lg mb-4">{error?.message}</p>
         <button
-          onClick={() => reset()} // Reset the error boundary
+          onClick={() => reset()}
           className="px-6 py-3 bg-[#8750F7] hover:bg-[#733DD6] text-white text-xl rounded-md transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#8750F7] focus:ring-offset-2"
         >
           Try Again

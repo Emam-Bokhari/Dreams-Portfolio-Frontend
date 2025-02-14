@@ -2,6 +2,9 @@ import { Fragment } from "react";
 import TechAnimation from "./TechAnimation";
 import FindWithMe from "./FindWithMe";
 import BestSkillsOn from "./BestSkillsOn";
+import { Button } from "../ui/button";
+import { Download } from "lucide-react";
+import ResumeDownloadButton from "./ResumeDownloadButton";
 
 export default function Banner() {
   return (
@@ -34,6 +37,8 @@ export default function Banner() {
             {/* best skills on */}
             <BestSkillsOn />
           </div>
+          {/* download resume button */}
+          <ResumeDownloadButton />
         </div>
         {/* animation */}
         <div className="hidden lg:block">

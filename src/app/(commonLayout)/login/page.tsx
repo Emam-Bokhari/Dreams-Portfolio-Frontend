@@ -2,7 +2,6 @@
 import { Fragment } from "react";
 import facebook from "@/assets/facebook-icon.png";
 import google from "@/assets/Google.svg";
-import gmail from "@/assets/gmail.png";
 import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { signIn } from "next-auth/react";

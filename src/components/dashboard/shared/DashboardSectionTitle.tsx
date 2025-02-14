@@ -4,7 +4,6 @@ interface SectionTitleProps {
   title: string;
   className?: string;
 }
-
 export default function DashboardSectionTitle({
   title,
   className,

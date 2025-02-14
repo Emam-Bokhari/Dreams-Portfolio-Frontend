@@ -7,7 +7,7 @@ export default async function DashboardBlogDetailsPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  // console.log(id);
+
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/blogs/${id}`,
     {

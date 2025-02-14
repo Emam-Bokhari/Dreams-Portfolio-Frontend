@@ -7,7 +7,7 @@ export default async function DashboardProjectDetailsPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  //   console.log(id);
+
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/projects/${id}`,
     {
@@ -19,7 +19,7 @@ export default async function DashboardProjectDetailsPage({
   }
   const result = await response.json();
   const project = result?.data || {};
-  // console.log(project);
+
   return (
     <div>
       {/* dashboard title */}

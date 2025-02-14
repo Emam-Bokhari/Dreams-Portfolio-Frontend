@@ -10,7 +10,7 @@ export default async function FeaturedProjectDetailsPage() {
   }
   const result = await response.json();
   const project = result?.data;
-  //   console.log(project);
+
   return (
     <div className="lg:max-w-screen-2xl p-4 mx-auto border-2 border-red-500">
       <SectionTitle title="Featured Project Details" />

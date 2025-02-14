@@ -18,7 +18,6 @@ import { useParams, useRouter } from "next/navigation";
 import React, { Fragment, useEffect, useState } from "react";
 import { FaPen } from "react-icons/fa";
 import { toast } from "sonner";
-
 export default function DashboardProjectUpdatePage() {
   const { id } = useParams();
   const router = useRouter();
@@ -189,7 +188,6 @@ export default function DashboardProjectUpdatePage() {
         projectTimeline: "",
       });
     } catch (err: any) {
-      // console.log(err);
       if (err) {
         toast.error("Something went wrong!");
       }

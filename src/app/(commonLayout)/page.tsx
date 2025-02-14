@@ -12,7 +12,6 @@ export default async function HomePage() {
   }
   const result = await response.json();
   const featuredProject = result?.data;
-  // console.log(featuredProject);
 
   return (
     <div className="lg:max-w-screen-2xl p-4 mx-auto ">
