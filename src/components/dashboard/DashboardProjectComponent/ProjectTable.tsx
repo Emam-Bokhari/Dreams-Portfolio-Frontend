@@ -78,9 +78,18 @@ export default function ProjectTable() {
 
   // delete project
   async function handleDeleteProject(id: string) {
+    // Find the project to check if it's featured
+    const projectToDelete = projects.find((project) => project._id === id);
+
+    if (projectToDelete?.isFeatured) {
+      toast.error("You cannot delete a featured project!");
+      return;
+    }
+
     // Optimistic UI Update: Delete locally first
     const updatedProjects = projects.filter((project) => project._id !== id);
     setProjects(updatedProjects);
+
     try {
       const response = await fetch(
         `https://dreams-portfolio-backend.vercel.app/api/v1/projects/${id}`,
