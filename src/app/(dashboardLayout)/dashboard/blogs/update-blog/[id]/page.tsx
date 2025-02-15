@@ -128,7 +128,7 @@ export default function DashboardUpdateBlogPage() {
         <DashboardSectionTitle title="Update Blog" />
         <form onSubmit={handleSubmit} className="mt-10">
           <div className="space-y-4">
-            <div className="flex gap-5">
+            <div className="flex flex-col xl:flex-row gap-5">
               {/* title */}
               <div className="space-y-2 flex-1">
                 <Label htmlFor="title" className="text-white">
@@ -162,7 +162,7 @@ export default function DashboardUpdateBlogPage() {
               </div>
             </div>
 
-            <div className="flex gap-5">
+            <div className="flex flex-col xl:flex-row gap-5">
               {/* category */}
               <div className="space-y-2 flex-1">
                 <Label htmlFor="category" className="text-white">
@@ -196,7 +196,7 @@ export default function DashboardUpdateBlogPage() {
             </div>
 
             {/* introduction */}
-            <div className="space-y-2 flex-1">
+            <div className="space-y-2">
               <Label htmlFor="introduction" className="text-white">
                 Introduction:<span className="text-red-500 ml-1">*</span>
               </Label>
@@ -211,7 +211,7 @@ export default function DashboardUpdateBlogPage() {
             </div>
 
             {/* mainContent */}
-            <div className="space-y-2 flex-1">
+            <div className="space-y-2 ">
               <Label htmlFor="mainContent" className="text-white">
                 Main Content:
                 <span className="text-red-500 ml-1">*</span>

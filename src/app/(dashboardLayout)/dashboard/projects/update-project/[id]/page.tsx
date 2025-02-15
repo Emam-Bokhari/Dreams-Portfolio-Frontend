@@ -201,7 +201,7 @@ export default function DashboardProjectUpdatePage() {
         <DashboardSectionTitle title="Update Project" />
         <form onSubmit={handleSubmit} className="mt-10">
           <div className="space-y-4">
-            <div className="flex gap-5">
+            <div className="flex flex-col xl:flex-row gap-5">
               {/* title */}
               <div className="space-y-2 flex-1">
                 <Label htmlFor="title" className="text-white">
@@ -235,7 +235,7 @@ export default function DashboardProjectUpdatePage() {
               </div>
             </div>
 
-            <div className="flex gap-5">
+            <div className="flex flex-col xl:flex-row gap-5">
               {/* project timeline */}
               <div className="space-y-2 flex-1">
                 <label
@@ -361,7 +361,7 @@ export default function DashboardProjectUpdatePage() {
               />
             </div>
 
-            <div className="flex gap-5">
+            <div className="flex flex-col xl:flex-row gap-5">
               {/* liveLink */}
               <div className="space-y-2 flex-1">
                 <Label htmlFor="liveLink" className="text-white">
@@ -396,7 +396,7 @@ export default function DashboardProjectUpdatePage() {
               </div>
             </div>
 
-            <div className="flex gap-5">
+            <div className="flex flex-col xl:flex-row gap-5">
               {/* backendSourceCode */}
               <div className="space-y-2 flex-1">
                 <Label htmlFor="backendSourceCode" className="text-white">
