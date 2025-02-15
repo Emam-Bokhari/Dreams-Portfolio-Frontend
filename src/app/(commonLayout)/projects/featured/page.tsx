@@ -12,7 +12,7 @@ export default async function FeaturedProjectDetailsPage() {
   const project = result?.data;
 
   return (
-    <div className="lg:max-w-screen-2xl p-4 mx-auto border-2 border-red-500">
+    <div className="lg:max-w-screen-2xl p-4 mx-auto">
       <SectionTitle title="Featured Project Details" />
       <ProjectDetails project={project} />
     </div>
